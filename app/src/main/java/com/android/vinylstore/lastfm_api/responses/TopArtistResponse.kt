@@ -1,5 +1,6 @@
-package com.android.vinylstore.lastfm_api
+package com.android.vinylstore.lastfm_api.responses
 
+import com.android.vinylstore.lastfm_api.classes.Artist
 import com.google.gson.annotations.SerializedName
 
 class TopArtistResponse(@SerializedName("artists") var artists: Artists) {
