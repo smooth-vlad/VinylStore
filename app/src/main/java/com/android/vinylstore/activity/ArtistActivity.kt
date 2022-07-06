@@ -1,6 +1,7 @@
 package com.android.vinylstore.activity
 
 import android.app.Activity
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,7 +26,6 @@ class ArtistActivity : AppCompatActivity() {
 
     private var artistName: String? = null
 
-//    private lateinit var artistNameTv: TextView
     private lateinit var artistImageIv: ImageView
     private lateinit var albumsRv: RecyclerView
 
@@ -39,9 +39,7 @@ class ArtistActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         artistImageIv = binding.artistImageIv
-//        artistNameTv = binding.artistNameTv
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
-//        artistNameTv.text = artistName
 
         albumsRv = binding.albumsRv
         albumsRv.layoutManager = GridLayoutManager(this, 4)
