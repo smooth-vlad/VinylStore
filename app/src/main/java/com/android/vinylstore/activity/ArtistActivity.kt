@@ -66,8 +66,8 @@ class ArtistActivity : AppCompatActivity() {
                     val url = topAlbum.image.last().path
                     Picasso.with(this@ArtistActivity)
                         .load(url)
-                        .placeholder(androidx.appcompat.resources.R.drawable.abc_vector_test)
-                        .error(androidx.appcompat.resources.R.drawable.abc_vector_test)
+                        .placeholder(R.drawable.ic_baseline_image)
+                        .error(R.drawable.ic_baseline_image_not_supported)
                         .into(artistImageIv)
                 }
             }

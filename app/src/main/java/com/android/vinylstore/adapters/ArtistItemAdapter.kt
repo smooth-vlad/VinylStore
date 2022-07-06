@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.android.vinylstore.R
 import com.android.vinylstore.activity.ArtistActivity
 import com.android.vinylstore.databinding.ArtistItemBinding
 import com.android.vinylstore.lastfm_api.classes.Artist
@@ -32,8 +33,8 @@ class ArtistItemAdapter(private val dataSet: List<Artist>) : RecyclerView.Adapte
         val imageUrl = dataSet[position].image.last().path
         Picasso.with(holder.view.context)
             .load(imageUrl)
-            .placeholder(androidx.appcompat.resources.R.drawable.abc_vector_test)
-            .error(androidx.appcompat.resources.R.drawable.abc_vector_test)
+            .placeholder(R.drawable.ic_baseline_image)
+            .error(R.drawable.ic_baseline_image_not_supported)
             .into(holder.artistImageView)
 
         holder.itemView.setOnClickListener {

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.android.vinylstore.R
 import com.android.vinylstore.databinding.AlbumItemBinding
 import com.android.vinylstore.lastfm_api.classes.Album
 import com.squareup.picasso.Picasso
@@ -29,8 +30,8 @@ class AlbumItemAdapter(private val dataSet: List<Album>) : RecyclerView.Adapter<
         if (imageUrl.isNotEmpty()) {
             Picasso.with(holder.view.context)
                 .load(imageUrl)
-                .placeholder(androidx.appcompat.resources.R.drawable.abc_vector_test)
-                .error(androidx.appcompat.resources.R.drawable.abc_vector_test)
+                .placeholder(R.drawable.ic_baseline_image)
+                .error(R.drawable.ic_baseline_image_not_supported)
                 .into(holder.albumImageView)
         }
     }
