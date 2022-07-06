@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         val albumsApiService = lastFmApi.retrofit.create(AlbumsApiService::class.java)
 
-        val call = albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey, page = 1)
+        val call = albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey)
 
         Log.d("MainActivity", call.request().url().toString())
 
