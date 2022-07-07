@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.android.vinylstore.R
 import com.android.vinylstore.adapters.ArtistItemAdapter
 import com.android.vinylstore.databinding.ActivityMainBinding
 import com.android.vinylstore.lastfm_api.LastFmApi
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        setSupportActionBar(binding.myToolbarMain)
 
         connectAndGetApiData()
     }
