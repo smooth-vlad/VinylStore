@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso
 class ArtistItemAdapter(private val dataSet: List<Artist>) : RecyclerView.Adapter<ArtistItemAdapter.ViewHolder>() {
     class ViewHolder(private val binding: ArtistItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val artistNameTextView: TextView = binding.artistNameTv
-        val artistImageView: ImageView = binding.imageView
 
         val view: View get() = binding.root
     }
@@ -30,12 +29,6 @@ class ArtistItemAdapter(private val dataSet: List<Artist>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.artistNameTextView.text = dataSet[position].name.trim()
-        val imageUrl = dataSet[position].image.last().path
-        Picasso.with(holder.view.context)
-            .load(imageUrl)
-            .placeholder(R.drawable.ic_baseline_image)
-            .error(R.drawable.ic_baseline_image_not_supported)
-            .into(holder.artistImageView)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, ArtistActivity::class.java)

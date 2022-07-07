@@ -3,6 +3,7 @@ package com.android.vinylstore.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.adapters.ArtistItemAdapter
 import com.android.vinylstore.databinding.ActivityMainBinding
@@ -12,8 +13,6 @@ import com.android.vinylstore.lastfm_api.responses.TopArtistResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         vinylRecyclerView = binding.vinylRecyclerView
+        vinylRecyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         connectAndGetApiData()
     }
