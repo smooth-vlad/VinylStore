@@ -8,6 +8,6 @@
     android:background="?attr/selectableItemBackground"
     android:padding="12dp"
     android:textSize="20sp"
-    android:textStyle="bold"
+    android:textStyle="normal"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="Artist name" />
