@@ -8,20 +8,21 @@
     tools:context=".activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        style="@style/Widget.Material3.AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.Material3.AppBarLayout"
         android:background="?attr/colorSurface">
 
         <com.google.android.material.appbar.MaterialToolbar
-            style="@style/Widget.Material3.Toolbar"
             android:id="@+id/my_toolbar_main"
+            style="@style/Widget.Material3.Toolbar"
             android:layout_width="match_parent"
-            app:titleTextColor="?attr/colorOnSurface"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorSurface"
+            app:menu="@menu/main_activity_menu"
             app:title="Artists"
             app:titleTextAppearance="@style/AppBarTitleTextAppearance"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSurface" />
+            app:titleTextColor="?attr/colorOnSurface" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,11 +31,17 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vinyl_recycler_view"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vinyl_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </FrameLayout>
 
     </androidx.core.widget.NestedScrollView>
 

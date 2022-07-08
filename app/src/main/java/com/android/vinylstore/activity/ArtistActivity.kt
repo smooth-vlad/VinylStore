@@ -1,14 +1,10 @@
 package com.android.vinylstore.activity
 
-import android.app.Activity
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.R
@@ -60,7 +56,10 @@ class ArtistActivity : AppCompatActivity() {
         Log.d("ArtistActivity", call.request().url().toString())
 
         call.enqueue(object : Callback<TopAlbumsResponse> {
-            override fun onResponse(call: Call<TopAlbumsResponse?>?, response: Response<TopAlbumsResponse?>) {
+            override fun onResponse(
+                call: Call<TopAlbumsResponse?>?,
+                response: Response<TopAlbumsResponse?>
+            ) {
                 response.body()?.let {
                     albumsRv.adapter = AlbumItemAdapter(it.topAlbums.album)
                     Log.d("ArtistActivity", "Number of albums found: " + it.topAlbums.attr.total)

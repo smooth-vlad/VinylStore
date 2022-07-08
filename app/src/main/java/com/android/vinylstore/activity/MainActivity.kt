@@ -2,6 +2,7 @@ package com.android.vinylstore.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -54,9 +55,13 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", call.request().url().toString())
 
         call.enqueue(object : Callback<TopArtistResponse> {
-            override fun onResponse(call: Call<TopArtistResponse?>?, response: Response<TopArtistResponse?>) {
+            override fun onResponse(
+                call: Call<TopArtistResponse?>?,
+                response: Response<TopArtistResponse?>
+            ) {
                 response.body()?.let {
-                    vinylRecyclerView.adapter = ArtistItemAdapter(it.artists.artist)
+                    val adapter = ArtistItemAdapter(it.artists.artist)
+                    vinylRecyclerView.adapter = adapter
                     Log.d("MainActivity", "Number of artists found: " + it.artists.attr.total)
                 }
             }
@@ -65,5 +70,25 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MainActivity", throwable.toString())
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_activity_menu, menu)
+        val search = menu!!.findItem(R.id.action_search)
+        val searchView = search.actionView as androidx.appcompat.widget.SearchView
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val adapter = (vinylRecyclerView.adapter as ArtistItemAdapter)
+                adapter.filter.filter(newText)
+                Log.d("MainActivity", "queryTextChange")
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 }
