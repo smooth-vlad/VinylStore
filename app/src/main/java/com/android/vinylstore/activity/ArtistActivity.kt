@@ -40,7 +40,7 @@ class ArtistActivity : AppCompatActivity() {
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
 
         albumsRv = binding.albumsRv
-        albumsRv.layoutManager = GridLayoutManager(this, 4)
+//        albumsRv.layoutManager = GridLayoutManager(this, 4)
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
         title = artistName

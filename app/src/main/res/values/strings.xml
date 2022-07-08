@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Vinyl Store</string>
+    <string name="tags_section_title">Tags</string>
 </resources>
