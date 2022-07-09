@@ -30,7 +30,7 @@ class AlbumItemAdapter(private val dataSet: List<Album>) : RecyclerView.Adapter<
         if (imageUrl.isNotEmpty()) {
             Picasso.with(holder.view.context)
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_baseline_image)
+                .placeholder(R.drawable.image_placeholder)
                 .error(R.drawable.ic_baseline_image_not_supported)
                 .into(holder.albumImageView)
         }

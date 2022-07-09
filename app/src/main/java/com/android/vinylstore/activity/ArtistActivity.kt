@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.R
 import com.android.vinylstore.activity.MainActivity.Companion.lastFmApi
@@ -40,7 +39,6 @@ class ArtistActivity : AppCompatActivity() {
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
 
         albumsRv = binding.albumsRv
-//        albumsRv.layoutManager = GridLayoutManager(this, 4)
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
         title = artistName
@@ -67,7 +65,7 @@ class ArtistActivity : AppCompatActivity() {
                     val url = topAlbum.image.last().path
                     Picasso.with(this@ArtistActivity)
                         .load(url)
-                        .placeholder(R.drawable.ic_baseline_image)
+                        .placeholder(R.drawable.image_placeholder)
                         .error(R.drawable.ic_baseline_image_not_supported)
                         .into(artistImageIv)
                 }

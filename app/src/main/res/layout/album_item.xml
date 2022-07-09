@@ -15,15 +15,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/albumImageViewFrame" />
+        app:srcCompat="@drawable/image_placeholder"
+        app:shapeAppearanceOverlay="@style/albumImageViewFrame"/>
 
     <TextView
         android:id="@+id/album_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="sans-serif-light"
         android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
         android:maxLines="1"
         android:paddingHorizontal="4dp"
         android:textAlignment="textStart"
