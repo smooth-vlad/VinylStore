@@ -25,7 +25,7 @@ class ArtistActivity : AppCompatActivity() {
     private var _binding: ActivityArtistBinding? = null
     val binding get() = _binding!!
 
-    private var artistName: String? = null
+    private lateinit var artistName: String
 
     private lateinit var artistImageIv: ImageView
     private lateinit var albumsRv: RecyclerView
@@ -74,7 +74,7 @@ class ArtistActivity : AppCompatActivity() {
     }
 
     private fun requestArtistInfo() {
-        val call = lastFmApi.albumsApiService.getInfoArtist(apiKey = lastFmApi.apiKey, artist = artistName!!)
+        val call = lastFmApi.albumsApiService.getInfoArtist(apiKey = lastFmApi.apiKey, artist = artistName)
 
         Log.d("ArtistActivity", call.request().url().toString())
 

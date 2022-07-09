@@ -50,6 +50,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/album_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -59,7 +60,6 @@
                     android:letterSpacing=".25"
                     android:maxWidth="340dp"
                     android:maxLines="1"
-                    android:text="Moral Panic"
                     android:textSize="24sp"
                     tools:text="Moral Panic" />
 
@@ -92,10 +92,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="2dp"
-                            android:fontFamily="sans-serif-thin"
+                            android:fontFamily="sans-serif-light"
                             android:maxLines="1"
-                            android:text="69 126"
-                            android:textSize="28sp" />
+                            android:textSize="24sp"
+                            tools:text="1 425 124" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -103,7 +103,7 @@
                         android:id="@+id/release_layout_cl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="20dp"
                         android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -112,10 +112,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:drawablePadding="4dp"
-                            android:text="Release"
+                            android:text="Likes"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_baseline_clock" />
+                            app:drawableStartCompat="@drawable/ic_baseline_like" />
 
                         <TextView
                             android:id="@+id/release_value_tv"
@@ -123,11 +123,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="2dp"
-                            android:fontFamily="sans-serif-thin"
+                            android:fontFamily="sans-serif-light"
                             android:maxLines="1"
-                            android:text="2019"
-                            android:textSize="28sp"
-                            tools:text="2019" />
+                            android:textSize="24sp"
+                            tools:text="64 019" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -138,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:backgroundTint="?attr/colorOnSurface"
-                    android:text="Buy Vinyl" />
+                    android:text="@string/buy_vinyl_button_text" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -173,16 +172,6 @@
                 android:paddingHorizontal="@dimen/screen_horizontal_margin"
                 app:chipSpacingHorizontal="12dp"
                 app:chipSpacingVertical="0dp">
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="cool" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="rock" />
 
             </com.google.android.material.chip.ChipGroup>
 

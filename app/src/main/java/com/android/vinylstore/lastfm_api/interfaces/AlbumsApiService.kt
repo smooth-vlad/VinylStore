@@ -1,5 +1,6 @@
 package com.android.vinylstore.lastfm_api.interfaces
 
+import com.android.vinylstore.lastfm_api.responses.AlbumInfoResponse
 import com.android.vinylstore.lastfm_api.responses.ArtistInfoResponse
 import com.android.vinylstore.lastfm_api.responses.TopAlbumsResponse
 import com.android.vinylstore.lastfm_api.responses.TopArtistResponse
@@ -37,4 +38,15 @@ interface AlbumsApiService {
         @Query("format") format: String = "json",
         @Query("method") method: String = "artist.getinfo"
     ): Call<ArtistInfoResponse>
+
+    @GET("/2.0/")
+    fun getInfoAlbum(
+        @Query("api_key") apiKey: String,
+        @Query("artist") artist: String,
+        @Query("album") album: String,
+        @Query("lang") lang: String? = null,
+        @Query("autocorrect") autoCorrect: Boolean? = null,
+        @Query("format") format: String = "json",
+        @Query("method") method: String = "album.getinfo"
+    ): Call<AlbumInfoResponse>
 }
