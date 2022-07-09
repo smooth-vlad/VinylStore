@@ -10,7 +10,6 @@ import com.android.vinylstore.R
 import com.android.vinylstore.adapters.ArtistItemAdapter
 import com.android.vinylstore.databinding.ActivityMainBinding
 import com.android.vinylstore.lastfm_api.LastFmApi
-import com.android.vinylstore.lastfm_api.interfaces.AlbumsApiService
 import com.android.vinylstore.lastfm_api.responses.TopArtistResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,14 +42,11 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.myToolbarMain)
 
-        connectAndGetApiData()
+        requestTopArtists()
     }
 
-    private fun connectAndGetApiData() {
-
-        val albumsApiService = lastFmApi.retrofit.create(AlbumsApiService::class.java)
-
-        val call = albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey)
+    private fun requestTopArtists() {
+        val call = lastFmApi.albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey)
 
         Log.d("MainActivity", call.request().url().toString())
 
@@ -59,17 +55,21 @@ class MainActivity : AppCompatActivity() {
                 call: Call<TopArtistResponse?>?,
                 response: Response<TopArtistResponse?>
             ) {
-                response.body()?.let {
-                    val adapter = ArtistItemAdapter(it.artists.artist)
-                    vinylRecyclerView.adapter = adapter
-                    Log.d("MainActivity", "Number of artists found: " + it.artists.attr.total)
-                }
+                onTopArtistsResponse(response)
             }
 
             override fun onFailure(call: Call<TopArtistResponse?>?, throwable: Throwable) {
                 Log.e("MainActivity", throwable.toString())
             }
         })
+    }
+
+    private fun onTopArtistsResponse(response: Response<TopArtistResponse?>) {
+        response.body()?.let {
+            val adapter = ArtistItemAdapter(it.artists.artist)
+            vinylRecyclerView.adapter = adapter
+            Log.d("MainActivity", "Number of artists found: " + it.artists.attr.total)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
