@@ -16,7 +16,7 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
-    
+
     <style name="ExpandedToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24dp</item>
@@ -35,4 +35,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>
     </style>
+    <style name="Theme.VinylStore.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.VinylStore.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.VinylStore.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -2,4 +2,5 @@
 <resources>
     <dimen name="screen_horizontal_margin">12dp</dimen>
     <dimen name="icon_s_size">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

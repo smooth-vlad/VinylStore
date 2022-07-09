@@ -1,9 +1,11 @@
 package com.android.vinylstore.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.R
@@ -43,6 +45,16 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.myToolbarMain)
 
         requestTopArtists()
+
+        // start Album Activity (for optimizing dev process purposes only)
+
+        val intent = Intent(this, AlbumActivity::class.java)
+        val bundle = Bundle().apply {
+            putString(AlbumActivity.ALBUM_NAME, "Gimme Love")
+            putString(AlbumActivity.ARTIST_NAME, "Joji")
+        }
+        intent.putExtras(bundle)
+        ContextCompat.startActivity(this, intent, null)
     }
 
     private fun requestTopArtists() {

@@ -1,11 +1,15 @@
 package com.android.vinylstore.adapters
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.vinylstore.R
+import com.android.vinylstore.activity.AlbumActivity
 import com.android.vinylstore.databinding.AlbumItemBinding
 import com.android.vinylstore.lastfm_api.classes.Album
 import com.squareup.picasso.Picasso
@@ -33,6 +37,16 @@ class AlbumItemAdapter(private val dataSet: List<Album>) : RecyclerView.Adapter<
                 .placeholder(R.drawable.image_placeholder)
                 .error(R.drawable.ic_baseline_image_not_supported)
                 .into(holder.albumImageView)
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(it.context, AlbumActivity::class.java)
+            val bundle = Bundle().apply {
+                putString(AlbumActivity.ALBUM_NAME, dataSet[position].name)
+                putString(AlbumActivity.ARTIST_NAME, dataSet[position].artist.name)
+            }
+            intent.putExtras(bundle)
+            ContextCompat.startActivity(it.context, intent, null)
         }
     }
 
