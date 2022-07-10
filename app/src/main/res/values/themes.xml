@@ -15,6 +15,7 @@
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="colorSurfaceVariant">#FFEBEBEB</item>
     </style>
 
     <style name="ExpandedToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
@@ -35,6 +36,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>
     </style>
+
+    <style name="vinylImageViewFrame" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="Theme.VinylStore.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -14,5 +14,7 @@
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">false</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="colorSurfaceVariant">#FF19181C</item>
     </style>
 </resources>

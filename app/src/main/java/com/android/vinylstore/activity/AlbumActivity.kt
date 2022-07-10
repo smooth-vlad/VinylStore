@@ -12,6 +12,7 @@ import com.android.vinylstore.lastfm_api.classes.Tag
 import com.android.vinylstore.lastfm_api.responses.AlbumInfoResponse
 import com.android.vinylstore.lastfm_api.responses.ArtistInfoResponse
 import com.google.android.material.chip.Chip
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,6 +68,15 @@ class AlbumActivity : AppCompatActivity() {
             binding.albumNameTv.text = it.album.name
             binding.playsValueTv.text = formatNumber(it.album.playcount.toString())
             binding.releaseValueTv.text = formatNumber(it.album.listeners.toString())
+
+            val url = it.album.image.last().path
+            Picasso.with(this)
+                .load(url)
+                .placeholder(R.drawable.image_placeholder)
+                .into(binding.albumIv)
+
+            binding.albumIv
+
             inflateTags(it.album.tags.tag)
         }
     }

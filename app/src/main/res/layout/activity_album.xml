@@ -37,10 +37,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/vinyl_showcase" />
+                android:layout_height="320dp"
+                android:background="?attr/colorSurfaceVariant">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/vinyl_iv"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="100dp"
+                        android:elevation="2dp"
+                        android:padding="8dp"
+                        android:src="@drawable/vinyl_pink"
+                        app:shapeAppearanceOverlay="@style/vinylImageViewFrame" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/album_iv"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:elevation="4dp"
+                        android:padding="4dp"
+                        android:src="@drawable/image_placeholder"
+                        app:shapeAppearanceOverlay="@style/albumImageViewFrame" />
+
+                </FrameLayout>
+
+            </FrameLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -84,7 +112,8 @@
                             android:text="Plays"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_baseline_play_arrow" />
+                            app:drawableStartCompat="@drawable/ic_baseline_play_arrow"
+                            app:drawableTint="?attr/colorOnSurface" />
 
                         <TextView
                             android:id="@+id/plays_value_tv"
@@ -115,7 +144,8 @@
                             android:text="Likes"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_baseline_like" />
+                            app:drawableStartCompat="@drawable/ic_baseline_like"
+                            app:drawableTint="?attr/colorOnSurface" />
 
                         <TextView
                             android:id="@+id/release_value_tv"
