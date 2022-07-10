@@ -42,31 +42,21 @@
                 android:layout_height="320dp"
                 android:background="?attr/colorSurfaceVariant">
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vinyl_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/vinyl_iv"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="100dp"
-                        android:elevation="2dp"
-                        android:padding="8dp"
-                        android:src="@drawable/vinyl_pink"
-                        app:shapeAppearanceOverlay="@style/vinylImageViewFrame" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/album_iv"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:elevation="4dp"
-                        android:padding="4dp"
-                        android:src="@drawable/image_placeholder"
-                        app:shapeAppearanceOverlay="@style/albumImageViewFrame" />
-
-                </FrameLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/album_iv"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="50dp"
+                    android:elevation="4dp"
+                    android:padding="4dp"
+                    android:src="@drawable/image_placeholder"
+                    app:shapeAppearanceOverlay="@style/albumImageViewFrame" />
 
             </FrameLayout>
 
@@ -123,6 +113,7 @@
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif-light"
                             android:maxLines="1"
+                            android:text="0"
                             android:textSize="24sp"
                             tools:text="1 425 124" />
 
@@ -155,6 +146,7 @@
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif-light"
                             android:maxLines="1"
+                            android:text="0"
                             android:textSize="24sp"
                             tools:text="64 019" />
 
