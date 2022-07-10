@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestTopArtists() {
-        val call = lastFmApi.albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey)
+        val call = lastFmApi.albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey, limit = 100)
 
         Log.d("MainActivity", call.request().url().toString())
 
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     private fun onTopArtistsResponse(response: Response<TopArtistResponse?>) {
         response.body()?.let {
             val adapter = ArtistItemAdapter(it.artists.artist)
-            vinylRecyclerView.adapter = adapter
+                vinylRecyclerView.adapter = adapter
             Log.d("MainActivity", "Number of artists found: " + it.artists.attr.total)
         }
     }
