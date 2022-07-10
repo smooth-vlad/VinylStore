@@ -49,6 +49,8 @@ class AlbumActivity : AppCompatActivity() {
         )
         binding.vinylVp.adapter = vinylViewPagerAdapter
 
+        binding.albumIv.setImageResource(R.drawable.image_placeholder)
+
         albumName = intent.extras?.getString(ALBUM_NAME).toString()
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
 
@@ -88,8 +90,6 @@ class AlbumActivity : AppCompatActivity() {
                 .load(url)
                 .placeholder(R.drawable.image_placeholder)
                 .into(binding.albumIv)
-
-            binding.albumIv
 
             inflateTags(it.album.tags.tag)
         }
