@@ -38,12 +38,9 @@ class AlbumActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val vinylViewPagerAdapter = VinylPagerAdapter(this)
-        val metrics = windowManager.currentWindowMetrics
-        val screenWidth = metrics.bounds.width().toFloat()
-        val stopPointX = binding.albumIv.x + binding.albumIv.width
         binding.vinylVp.setPageTransformer(
             StackedPageTransformer(
-                screenWidth,
+                binding.vinylVp,
                 resources.displayMetrics.density
             )
         )
@@ -120,12 +117,12 @@ class AlbumActivity : AppCompatActivity() {
         return true
     }
 
-    class StackedPageTransformer(private val screenWidth: Float, private val density: Float) :
+    class StackedPageTransformer(private val viewPager: View, private val density: Float) :
         ViewPager2.PageTransformer {
 
         // vinyl image is 200 dp wide, so 100 is a half
         private val halfVinylImage = 100F * density
-        private val halfVinylImageOffset = halfVinylImage / screenWidth
+        private val halfVinylImageOffset  get() = halfVinylImage / viewPager.width
 
         override fun transformPage(page: View, position: Float) {
             if (position <= -1f) {    // [-Infinity,-1)
