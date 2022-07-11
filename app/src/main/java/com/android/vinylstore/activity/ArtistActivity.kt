@@ -94,7 +94,7 @@ class ArtistActivity : AppCompatActivity() {
 
     private fun onTopAlbumsResponse(response: Response<TopAlbumsResponse?>) {
         response.body()?.let {
-            albumsRv.adapter = AlbumItemAdapter(it.topAlbums.album)
+            albumsRv.adapter = AlbumItemAdapter(it.topAlbums.album.filterNot { album -> album.name == "(null)" })
             Log.d("ArtistActivity", "Number of albums found: " + it.topAlbums.attr.total)
             val topAlbum = it.topAlbums.album[0]
             val url = topAlbum.image.last().path
