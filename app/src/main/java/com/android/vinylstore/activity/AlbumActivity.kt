@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Calendar
 
 
 class AlbumActivity : AppCompatActivity() {
@@ -94,6 +95,14 @@ class AlbumActivity : AppCompatActivity() {
 
             it.album.tags?.let { tags ->
                 inflateTags(tags.tag)
+            }
+
+            it.album.tracks?.track?.let { trackList ->
+                val sb = StringBuilder()
+                for ((index, track) in trackList.tracks.withIndex()) {
+                    sb.append("${index + 1} | ${track.name} | ${track.duration / 60}:${track.duration % 60}\n")
+                }
+                binding.tracksTv.text = sb.toString()
             }
         }
     }

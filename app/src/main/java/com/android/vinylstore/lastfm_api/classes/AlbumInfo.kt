@@ -17,7 +17,6 @@ class AlbumInfo(
     @SerializedName("tags") var tags: Tags?,
     @SerializedName("playcount") var playcount: Int,
     @SerializedName("image") var image: List<Image>,
-    @JsonAdapter(TracksAdapterFactory::class)
     @SerializedName("tracks") var tracks: Tracks?,
     @SerializedName("url") var url: String,
     @SerializedName("name") var name: String,
@@ -26,8 +25,13 @@ class AlbumInfo(
 ) {
 
     class Tracks(
-        @SerializedName("track") var track: List<Track>
-    )
+        @JsonAdapter(TracksAdapterFactory::class)
+        @SerializedName("track") var track: TracksInner
+    ) {
+        class TracksInner(
+            var tracks: List<Track>
+        )
+    }
 
     class Tags(
         @SerializedName("tag") var tag: List<Tag>
@@ -72,15 +76,27 @@ class AlbumInfo(
 
     }
 
-    class TracksAdapter(private val gson: Gson) : TypeAdapter<Tracks>() {
-        override fun write(jsonWriter: JsonWriter?, value: Tracks?) {
+    class TracksAdapter(private val gson: Gson) : TypeAdapter<Tracks.TracksInner>() {
+        override fun write(jsonWriter: JsonWriter?, value: Tracks.TracksInner?) {
             TODO("Not yet implemented")
         }
 
-        override fun read(jsonReader: JsonReader): Tracks {
+        override fun read(jsonReader: JsonReader): Tracks.TracksInner {
             return when (jsonReader.peek()) {
-                JsonToken.BEGIN_ARRAY -> gson.fromJson(jsonReader, Tracks::class.java)
-                JsonToken.BEGIN_OBJECT -> Tracks(listOf(gson.fromJson(jsonReader, Track::class.java)))
+                JsonToken.BEGIN_ARRAY -> Tracks.TracksInner(
+                    gson.fromJson(
+                        jsonReader,
+                        object : TypeToken<List<Track>>() {}.type
+                    )
+                )
+                JsonToken.BEGIN_OBJECT -> Tracks.TracksInner(
+                    listOf(
+                        gson.fromJson(
+                            jsonReader,
+                            Track::class.java
+                        )
+                    )
+                )
                 else -> throw com.google.gson.JsonSyntaxException("Expected string or object")
             }
         }
