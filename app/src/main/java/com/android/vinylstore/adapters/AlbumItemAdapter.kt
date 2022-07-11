@@ -37,6 +37,8 @@ class AlbumItemAdapter(private val dataSet: List<Album>) : RecyclerView.Adapter<
                 .placeholder(R.drawable.image_placeholder)
                 .error(R.drawable.ic_baseline_image_not_supported)
                 .into(holder.albumImageView)
+        } else {
+            holder.albumImageView.setImageResource(R.drawable.image_placeholder)
         }
 
         holder.itemView.setOnClickListener {

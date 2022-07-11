@@ -71,7 +71,7 @@ class AlbumActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<AlbumInfoResponse?>?, throwable: Throwable) {
-                Log.e("ArtistActivity", throwable.toString())
+                Log.e("AlbumActivity", throwable.toString())
             }
         })
     }
@@ -83,12 +83,18 @@ class AlbumActivity : AppCompatActivity() {
             binding.releaseValueTv.text = formatNumber(it.album.listeners.toString())
 
             val url = it.album.image.last().path
-            Picasso.with(this)
-                .load(url)
-                .placeholder(R.drawable.image_placeholder)
-                .into(binding.albumIv)
+            if (url.isNotEmpty()) {
+                Picasso.with(this)
+                    .load(url)
+                    .placeholder(R.drawable.image_placeholder)
+                    .into(binding.albumIv)
+            } else {
+                binding.albumIv.setImageResource(R.drawable.image_placeholder)
+            }
 
-            inflateTags(it.album.tags.tag)
+            it.album.tags?.let { tags ->
+                inflateTags(tags.tag)
+            }
         }
     }
 

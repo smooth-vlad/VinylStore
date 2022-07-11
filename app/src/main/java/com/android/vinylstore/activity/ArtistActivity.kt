@@ -98,11 +98,15 @@ class ArtistActivity : AppCompatActivity() {
             Log.d("ArtistActivity", "Number of albums found: " + it.topAlbums.attr.total)
             val topAlbum = it.topAlbums.album[0]
             val url = topAlbum.image.last().path
-            Picasso.with(this@ArtistActivity)
-                .load(url)
-                .placeholder(R.drawable.image_placeholder)
-                .error(R.drawable.ic_baseline_image_not_supported)
-                .into(artistImageIv)
+            if (url.isNotEmpty()) {
+                Picasso.with(this@ArtistActivity)
+                    .load(url)
+                    .placeholder(R.drawable.image_placeholder)
+                    .error(R.drawable.ic_baseline_image_not_supported)
+                    .into(artistImageIv)
+            } else {
+                binding.artistImageIv.setImageResource(R.drawable.image_placeholder)
+            }
         }
     }
 
