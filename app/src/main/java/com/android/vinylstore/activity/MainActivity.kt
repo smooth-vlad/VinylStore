@@ -48,13 +48,13 @@ class MainActivity : AppCompatActivity() {
 
         // start Album Activity (for optimizing dev process purposes only)
 
-        val intent = Intent(this, AlbumActivity::class.java)
-        val bundle = Bundle().apply {
-            putString(AlbumActivity.ALBUM_NAME, "Gimme Love")
-            putString(AlbumActivity.ARTIST_NAME, "Joji")
-        }
-        intent.putExtras(bundle)
-        ContextCompat.startActivity(this, intent, null)
+//        val intent = Intent(this, AlbumActivity::class.java)
+//        val bundle = Bundle().apply {
+//            putString(AlbumActivity.ALBUM_NAME, "Gimme Love")
+//            putString(AlbumActivity.ARTIST_NAME, "Joji")
+//        }
+//        intent.putExtras(bundle)
+//        ContextCompat.startActivity(this, intent, null)
     }
 
     private fun requestTopArtists() {

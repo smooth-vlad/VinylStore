@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorSurface"
             app:menu="@menu/main_activity_menu"
-            app:title="Artists"
+            app:title="@string/artists_activity_title"
             app:titleTextAppearance="@style/AppBarTitleTextAppearance"
             app:titleTextColor="?attr/colorOnSurface" />
 
