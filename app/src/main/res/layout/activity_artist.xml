@@ -120,6 +120,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="6dp"
                 android:orientation="horizontal"
+                tools:listitem="@layout/album_item"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

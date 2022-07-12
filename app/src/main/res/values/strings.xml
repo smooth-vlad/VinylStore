@@ -7,4 +7,5 @@
     <string name="albums_list_title">Albums</string>
     <string name="artists_activity_title">Artists</string>
     <string name="search_menu_item_title">Search</string>
+    <string name="tracks_list_title">Tracks</string>
 </resources>

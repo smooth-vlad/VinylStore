@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.android.vinylstore.R
 import com.android.vinylstore.activity.MainActivity.Companion.lastFmApi
+import com.android.vinylstore.adapters.TrackItemAdapter
 import com.android.vinylstore.adapters.VinylPagerAdapter
 import com.android.vinylstore.databinding.ActivityAlbumBinding
+import com.android.vinylstore.lastfm_api.classes.Artist
 import com.android.vinylstore.lastfm_api.classes.Tag
+import com.android.vinylstore.lastfm_api.classes.Track
 import com.android.vinylstore.lastfm_api.responses.AlbumInfoResponse
 import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
@@ -97,12 +100,22 @@ class AlbumActivity : AppCompatActivity() {
                 inflateTags(tags.tag)
             }
 
-            it.album.tracks?.track?.let { trackList ->
-                val sb = StringBuilder()
-                for ((index, track) in trackList.tracks.withIndex()) {
-                    sb.append("${index + 1} | ${track.name} | ${track.duration / 60}:${track.duration % 60}\n")
-                }
-                binding.tracksTv.text = sb.toString()
+            if (it.album.tracks == null) {
+                // UNSAFE TRACK CREATION:
+                // the only filled fields: albumName, artistName, trackRank
+                // do not use in your tracks layout created dummy fields: duration, url, artist's url, artist's mbid, streamable
+                val single =
+                    Track(
+                        Track.Streamable("", ""),
+                        0,
+                        "",
+                        it.album.name,
+                        Track.Attribute(1),
+                        Track.Artist("", it.album.artist, "")
+                    )
+                binding.tracksRv.adapter = TrackItemAdapter(listOf(single))
+            } else {
+                binding.tracksRv.adapter = TrackItemAdapter(it.album.tracks!!.track.tracks)
             }
         }
     }
@@ -137,7 +150,7 @@ class AlbumActivity : AppCompatActivity() {
 
         // vinyl image is 200 dp wide, so 100 is a half
         private val halfVinylImage = 100F * density
-        private val halfVinylImageOffset  get() = halfVinylImage / viewPager.width
+        private val halfVinylImageOffset get() = halfVinylImage / viewPager.width
 
         override fun transformPage(page: View, position: Float) {
             if (position <= -1f) {    // [-Infinity,-1)
