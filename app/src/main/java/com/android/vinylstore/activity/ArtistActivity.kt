@@ -3,6 +3,7 @@ package com.android.vinylstore.activity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
@@ -31,6 +32,9 @@ class ArtistActivity : AppCompatActivity() {
     private lateinit var albumsRv: RecyclerView
     private lateinit var tagsChipGroup: ChipGroup
 
+    private var topAlbumsResponseSuccess = false
+    private var artistInfoResponseSuccess = false
+
     companion object {
         const val ARTIST_NAME = "ArtistActivity.ARTIST_NAME"
     }
@@ -44,6 +48,8 @@ class ArtistActivity : AppCompatActivity() {
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
 
         albumsRv = binding.albumsRv
+
+        binding.activityArtistShimmer.startShimmer()
 
         tagsChipGroup = binding.tagsCg
 
@@ -94,6 +100,7 @@ class ArtistActivity : AppCompatActivity() {
 
     private fun onTopAlbumsResponse(response: Response<TopAlbumsResponse?>) {
         response.body()?.let {
+            topAlbumsResponseSuccess = true
             albumsRv.adapter = AlbumItemAdapter(it.topAlbums.album.filterNot { album -> album.name == "(null)" })
             Log.d("ArtistActivity", "Number of albums found: " + it.topAlbums.attr.total)
             val topAlbum = it.topAlbums.album[0]
@@ -107,12 +114,22 @@ class ArtistActivity : AppCompatActivity() {
             } else {
                 binding.artistImageIv.setImageResource(R.drawable.image_placeholder)
             }
+
+            if (artistInfoResponseSuccess && topAlbumsResponseSuccess) {
+                hidePlaceHolderUi()
+                showMainLayout()
+            }
         }
     }
 
     private fun onArtistInfoResponse(response: Response<ArtistInfoResponse?>) {
         response.body()?.let {
+            artistInfoResponseSuccess = true
             inflateTags(it.artist.tags.tag)
+            if (artistInfoResponseSuccess && topAlbumsResponseSuccess) {
+                hidePlaceHolderUi()
+                showMainLayout()
+            }
         }
     }
 
@@ -121,6 +138,17 @@ class ArtistActivity : AppCompatActivity() {
             val chip = Chip(this)
             chip.text = tag.name
             tagsChipGroup.addView(chip)
+        }
+    }
+
+    private fun showMainLayout() {
+        binding.activityArtistLayout.visibility = View.VISIBLE
+    }
+
+    private fun hidePlaceHolderUi() {
+        binding.activityArtistShimmer.apply {
+            this.stopShimmer()
+            this.visibility = View.GONE
         }
     }
 
