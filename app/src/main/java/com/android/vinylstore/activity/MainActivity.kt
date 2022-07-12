@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        binding.activityMainShimmer.startShimmer()
+
         setSupportActionBar(binding.myToolbarMain)
 
         requestTopArtists()
@@ -78,9 +81,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun onTopArtistsResponse(response: Response<TopArtistResponse?>) {
         response.body()?.let {
+            hidePlaceHolderUi()
             val adapter = ArtistItemAdapter(it.artists.artist)
-                vinylRecyclerView.adapter = adapter
+            vinylRecyclerView.adapter = adapter
             Log.d("MainActivity", "Number of artists found: " + it.artists.attr.total)
+        }
+    }
+
+    private fun hidePlaceHolderUi() {
+        binding.activityMainShimmer.apply {
+            this.stopShimmer()
+            this.visibility = View.GONE
         }
     }
 
