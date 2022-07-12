@@ -20,12 +20,8 @@ class AlbumInfo(
 
     class Tracks(
         @JsonAdapter(TracksOrTrackAdapterFactory::class)
-        @SerializedName("track") var track: TracksInner
-    ) {
-        class TracksInner(
-            var tracks: List<Track>
-        )
-    }
+        @SerializedName("track") var track: List<Track>
+    )
 
     class Tags(
         @JsonAdapter(TagsOrTagAdapterFactory::class)

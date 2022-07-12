@@ -10,25 +10,21 @@ import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
 
-class TracksOrTrackAdapter(private val gson: Gson) : TypeAdapter<AlbumInfo.Tracks.TracksInner>() {
-    override fun write(jsonWriter: JsonWriter?, value: AlbumInfo.Tracks.TracksInner?) {
+class TracksOrTrackAdapter(private val gson: Gson) : TypeAdapter<List<Track>>() {
+    override fun write(jsonWriter: JsonWriter?, value: List<Track>?) {
         TODO("Not yet implemented")
     }
 
-    override fun read(jsonReader: JsonReader): AlbumInfo.Tracks.TracksInner {
+    override fun read(jsonReader: JsonReader): List<Track> {
         return when (jsonReader.peek()) {
-            JsonToken.BEGIN_ARRAY -> AlbumInfo.Tracks.TracksInner(
+            JsonToken.BEGIN_ARRAY -> gson.fromJson(
+                jsonReader,
+                object : TypeToken<List<Track>>() {}.type
+            )
+            JsonToken.BEGIN_OBJECT -> listOf(
                 gson.fromJson(
                     jsonReader,
-                    object : TypeToken<List<Track>>() {}.type
-                )
-            )
-            JsonToken.BEGIN_OBJECT -> AlbumInfo.Tracks.TracksInner(
-                listOf(
-                    gson.fromJson(
-                        jsonReader,
-                        Track::class.java
-                    )
+                    Track::class.java
                 )
             )
             else -> throw com.google.gson.JsonSyntaxException("Expected string or object")

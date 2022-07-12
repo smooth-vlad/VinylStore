@@ -115,7 +115,7 @@ class AlbumActivity : AppCompatActivity() {
                     )
                 binding.tracksRv.adapter = TrackItemAdapter(listOf(single))
             } else {
-                binding.tracksRv.adapter = TrackItemAdapter(it.album.tracks!!.track.tracks)
+                binding.tracksRv.adapter = TrackItemAdapter(it.album.tracks!!.track)
             }
         }
     }
