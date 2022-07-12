@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
@@ -75,6 +76,7 @@ class ArtistActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<TopAlbumsResponse?>?, throwable: Throwable) {
                 Log.e("ArtistActivity", throwable.toString())
+                Toast.makeText(this@ArtistActivity, getString(R.string.connection_failure), Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -94,6 +96,7 @@ class ArtistActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<ArtistInfoResponse?>?, throwable: Throwable) {
                 Log.e("ArtistActivity", throwable.toString())
+                Toast.makeText(this@ArtistActivity, getString(R.string.connection_failure), Toast.LENGTH_SHORT).show()
             }
         })
     }

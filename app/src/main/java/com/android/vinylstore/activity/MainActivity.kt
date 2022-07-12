@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<TopArtistResponse?>?, throwable: Throwable) {
                 Log.e("MainActivity", throwable.toString())
+                Toast.makeText(this@MainActivity, getString(R.string.connection_failure), Toast.LENGTH_SHORT).show()
             }
         })
     }
