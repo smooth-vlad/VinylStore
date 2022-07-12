@@ -127,6 +127,9 @@ class AlbumActivity : AppCompatActivity() {
             } else {
                 binding.tracksRv.adapter = TrackItemAdapter(it.album.tracks!!.track)
             }
+
+            hidePlaceHolderUi()
+            showMainLayout()
         }
     }
 
@@ -148,6 +151,17 @@ class AlbumActivity : AppCompatActivity() {
             result.append(c)
         }
         return result.reversed().toString()
+    }
+
+    private fun showMainLayout() {
+        binding.activityAlbumLayout.visibility = View.VISIBLE
+    }
+
+    private fun hidePlaceHolderUi() {
+        binding.activityAlbumShimmer.apply {
+            this.stopShimmer()
+            this.visibility = View.GONE
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

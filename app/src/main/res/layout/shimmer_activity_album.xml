@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:background="@color/placeholder" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/placeholder"
+            android:textSize="24sp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp">
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/placeholder" />
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/placeholder" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/placeholder" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="128dp"
+        android:layout_height="@dimen/icon_s_size"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_margin"
+        android:layout_marginTop="32dp"
+        android:background="@color/placeholder" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_margin"
+        app:chipSpacingHorizontal="12dp"
+        app:chipSpacingVertical="0dp">
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:background="@color/placeholder" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:background="@color/placeholder" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:background="@color/placeholder" />
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:background="@color/placeholder" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <View
+        android:layout_width="128dp"
+        android:layout_height="@dimen/icon_s_size"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_margin"
+        android:layout_marginTop="16dp"
+        android:background="@color/placeholder" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/screen_horizontal_margin">
+
+        <include layout="@layout/shimmer_track_item" />
+
+        <include layout="@layout/shimmer_track_item" />
+
+        <include layout="@layout/shimmer_track_item" />
+
+        <include layout="@layout/shimmer_track_item" />
+
+        <include layout="@layout/shimmer_track_item" />
+
+        <include layout="@layout/shimmer_track_item" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
