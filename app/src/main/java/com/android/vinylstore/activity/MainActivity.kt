@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private lateinit var vinylRecyclerView: RecyclerView
+    private lateinit var search: MenuItem
 
     companion object {
         val lastFmApi = LastFmApi("35a05fb4101e2310860399151c60f746")
@@ -82,10 +84,15 @@ class MainActivity : AppCompatActivity() {
     private fun onTopArtistsResponse(response: Response<TopArtistResponse?>) {
         response.body()?.let {
             hidePlaceHolderUi()
+            unlockSearchMenuItem()
             val adapter = ArtistItemAdapter(it.artists.artist)
             vinylRecyclerView.adapter = adapter
             Log.d("MainActivity", "Number of artists found: " + it.artists.attr.total)
         }
+    }
+
+    private fun unlockSearchMenuItem() {
+        search.isEnabled = true
     }
 
     private fun hidePlaceHolderUi() {
@@ -97,7 +104,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_activity_menu, menu)
-        val search = menu!!.findItem(R.id.action_search)
+        search = menu!!.findItem(R.id.action_search)
+        search.isEnabled = false
         val searchView = search.actionView as androidx.appcompat.widget.SearchView
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
