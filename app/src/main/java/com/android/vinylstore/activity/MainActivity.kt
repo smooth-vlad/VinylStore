@@ -1,6 +1,5 @@
 package com.android.vinylstore.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -8,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.R
@@ -28,6 +26,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vinylRecyclerView: RecyclerView
     private lateinit var search: MenuItem
 
+    private var _isWaitingForResponse = false
+    var isWaitingForResponse
+        get() = _isWaitingForResponse
+        set(value) {
+            _isWaitingForResponse = value
+            if (!value && binding.artistsSwipeRefresh.isRefreshing)
+                binding.artistsSwipeRefresh.isRefreshing = false
+        }
+
     companion object {
         val lastFmApi = LastFmApi("35a05fb4101e2310860399151c60f746")
     }
@@ -45,6 +52,17 @@ class MainActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        binding.artistsSwipeRefresh.setOnRefreshListener {
+            if (isWaitingForResponse) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.refresh_on_loading_error_message),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else
+                requestTopArtists()
+        }
 
         binding.activityMainShimmer.startShimmer()
 
@@ -68,17 +86,24 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("MainActivity", call.request().url().toString())
 
+        isWaitingForResponse = true
         call.enqueue(object : Callback<TopArtistResponse> {
             override fun onResponse(
                 call: Call<TopArtistResponse?>?,
                 response: Response<TopArtistResponse?>
             ) {
+                isWaitingForResponse = false
                 onTopArtistsResponse(response)
             }
 
             override fun onFailure(call: Call<TopArtistResponse?>?, throwable: Throwable) {
                 Log.e("MainActivity", throwable.toString())
-                Toast.makeText(this@MainActivity, getString(R.string.connection_failure), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    getString(R.string.connection_failure),
+                    Toast.LENGTH_SHORT
+                ).show()
+                isWaitingForResponse = false
             }
         })
     }

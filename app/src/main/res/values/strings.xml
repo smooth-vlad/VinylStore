@@ -9,4 +9,5 @@
     <string name="search_menu_item_title">Search</string>
     <string name="tracks_list_title">Tracks</string>
     <string name="connection_failure">Failed to connect. Check your network connection</string>
+    <string name="refresh_on_loading_error_message">Can\'t refresh - the loading is in process already</string>
 </resources>
