@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.android.vinylstore.R
 import com.android.vinylstore.activity.MainActivity.Companion.lastFmApi
@@ -51,6 +53,14 @@ class AlbumActivity : AppCompatActivity() {
         binding.vinylVp.adapter = vinylViewPagerAdapter
 
         binding.albumIv.setImageResource(R.drawable.image_placeholder)
+
+        binding.tracksRv.layoutManager = object : LinearLayoutManager(this){ override fun canScrollVertically(): Boolean { return false } }
+        binding.tracksRv.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         albumName = intent.extras?.getString(ALBUM_NAME).toString()
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
