@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.R
+import com.android.vinylstore.Root
 import com.android.vinylstore.adapters.ArtistItemAdapter
 import com.android.vinylstore.databinding.ActivityMainBinding
+import com.android.vinylstore.di.AppComponent
 import com.android.vinylstore.lastfm_api.LastFmApi
 import com.android.vinylstore.lastfm_api.responses.TopArtistResponse
 import retrofit2.Call
@@ -35,10 +37,6 @@ class MainActivity : AppCompatActivity() {
             if (!value && binding.artistsSwipeRefresh.isRefreshing)
                 binding.artistsSwipeRefresh.isRefreshing = false
         }
-
-    companion object {
-        val lastFmApi = LastFmApi()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestTopArtists() {
-        val call = lastFmApi.albumsApiService.getTopArtists(BuildConfig.LASTFM_API_KEY, limit = 100)
+        val call = Root.getAppComponent(this).getLastFmApi().albumsApiService.getTopArtists(BuildConfig.LASTFM_API_KEY, limit = 100)
 
         Log.d("MainActivity", call.request().url().toString())
 

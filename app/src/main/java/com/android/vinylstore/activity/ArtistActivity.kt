@@ -11,7 +11,7 @@ import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.R
-import com.android.vinylstore.activity.MainActivity.Companion.lastFmApi
+import com.android.vinylstore.Root
 import com.android.vinylstore.adapters.AlbumItemAdapter
 import com.android.vinylstore.databinding.ActivityArtistBinding
 import com.android.vinylstore.lastfm_api.classes.Tag
@@ -63,7 +63,7 @@ class ArtistActivity : AppCompatActivity() {
     }
 
     private fun requestTopAlbums() {
-        val call = lastFmApi.albumsApiService.getTopAlbums(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName!!)
+        val call = Root.getAppComponent(this).getLastFmApi().albumsApiService.getTopAlbums(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName!!)
 
         Log.d("ArtistActivity", call.request().url().toString())
 
@@ -83,7 +83,7 @@ class ArtistActivity : AppCompatActivity() {
     }
 
     private fun requestArtistInfo() {
-        val call = lastFmApi.albumsApiService.getInfoArtist(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName)
+        val call = Root.getAppComponent(this).getLastFmApi().albumsApiService.getInfoArtist(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName)
 
         Log.d("ArtistActivity", call.request().url().toString())
 

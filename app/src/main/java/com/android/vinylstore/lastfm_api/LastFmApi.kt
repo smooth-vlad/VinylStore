@@ -4,8 +4,10 @@ import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.lastfm_api.interfaces.AlbumsApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class LastFmApi() {
+class LastFmApi @Inject constructor() {
+
     private var _albumsApiService: AlbumsApiService? = null
     val albumsApiService: AlbumsApiService
         get() {
