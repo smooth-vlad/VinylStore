@@ -74,7 +74,7 @@ class AlbumActivity : AppCompatActivity() {
     }
 
     private fun requestAlbumInfo() {
-        val call = Root.getAppComponent(this).getLastFmApi().albumsApiService.getInfoAlbum(BuildConfig.LASTFM_API_KEY, artistName, albumName)
+        val call = Root.getAppComponent(this).getAlbumsApiService().getInfoAlbum(BuildConfig.LASTFM_API_KEY, artistName, albumName)
 
         Log.d("AlbumActivity", call.request().url().toString())
 

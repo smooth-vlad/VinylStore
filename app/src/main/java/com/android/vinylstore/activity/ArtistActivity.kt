@@ -63,7 +63,7 @@ class ArtistActivity : AppCompatActivity() {
     }
 
     private fun requestTopAlbums() {
-        val call = Root.getAppComponent(this).getLastFmApi().albumsApiService.getTopAlbums(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName!!)
+        val call = Root.getAppComponent(this).getAlbumsApiService().getTopAlbums(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName!!)
 
         Log.d("ArtistActivity", call.request().url().toString())
 
@@ -83,7 +83,7 @@ class ArtistActivity : AppCompatActivity() {
     }
 
     private fun requestArtistInfo() {
-        val call = Root.getAppComponent(this).getLastFmApi().albumsApiService.getInfoArtist(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName)
+        val call = Root.getAppComponent(this).getAlbumsApiService().getInfoArtist(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName)
 
         Log.d("ArtistActivity", call.request().url().toString())
 

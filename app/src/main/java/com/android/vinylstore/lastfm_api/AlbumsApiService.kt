@@ -1,4 +1,4 @@
-package com.android.vinylstore.lastfm_api.interfaces
+package com.android.vinylstore.lastfm_api
 
 import com.android.vinylstore.lastfm_api.responses.AlbumInfoResponse
 import com.android.vinylstore.lastfm_api.responses.ArtistInfoResponse

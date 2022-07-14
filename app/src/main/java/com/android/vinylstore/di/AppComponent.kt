@@ -1,10 +1,10 @@
 package com.android.vinylstore.di
 
-import com.android.vinylstore.lastfm_api.LastFmApi
+import com.android.vinylstore.lastfm_api.AlbumsApiService
 import dagger.Component
 import javax.inject.Inject
 
-@Component
+@Component(modules = [AppModule::class])
 interface AppComponent {
-    fun getLastFmApi(): LastFmApi
+    fun getAlbumsApiService(): AlbumsApiService
 }
