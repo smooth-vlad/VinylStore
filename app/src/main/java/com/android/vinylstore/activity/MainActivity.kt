@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.R
 import com.android.vinylstore.adapters.ArtistItemAdapter
 import com.android.vinylstore.databinding.ActivityMainBinding
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     companion object {
-        val lastFmApi = LastFmApi("35a05fb4101e2310860399151c60f746")
+        val lastFmApi = LastFmApi()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestTopArtists() {
-        val call = lastFmApi.albumsApiService.getTopArtists(apiKey = lastFmApi.apiKey, limit = 100)
+        val call = lastFmApi.albumsApiService.getTopArtists(BuildConfig.LASTFM_API_KEY, limit = 100)
 
         Log.d("MainActivity", call.request().url().toString())
 

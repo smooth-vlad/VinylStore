@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.R
 import com.android.vinylstore.activity.MainActivity.Companion.lastFmApi
 import com.android.vinylstore.adapters.TrackItemAdapter
@@ -73,7 +74,7 @@ class AlbumActivity : AppCompatActivity() {
     }
 
     private fun requestAlbumInfo() {
-        val call = lastFmApi.albumsApiService.getInfoAlbum(lastFmApi.apiKey, artistName, albumName)
+        val call = lastFmApi.albumsApiService.getInfoAlbum(BuildConfig.LASTFM_API_KEY, artistName, albumName)
 
         Log.d("AlbumActivity", call.request().url().toString())
 

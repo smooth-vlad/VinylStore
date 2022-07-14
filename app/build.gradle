@@ -14,12 +14,15 @@ android {
     namespace 'com.android.vinylstore'
     compileSdk 32
 
-    defaultConfig {\
+    defaultConfig {
         applicationId "com.android.vinylstore"
         minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "LASTFM_API_KEY", "\"35a05fb4101e2310860399151c60f746\"")
+        buildConfigField("String", "LASTFM_API_BASE_URL", "\"https://ws.audioscrobbler.com/\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

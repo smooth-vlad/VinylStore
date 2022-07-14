@@ -1,12 +1,11 @@
 package com.android.vinylstore.lastfm_api
 
+import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.lastfm_api.interfaces.AlbumsApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class LastFmApi(val apiKey: String) {
-    val baseUrl = "https://ws.audioscrobbler.com/"
-
+class LastFmApi() {
     private var _albumsApiService: AlbumsApiService? = null
     val albumsApiService: AlbumsApiService
         get() {
@@ -25,7 +24,7 @@ class LastFmApi(val apiKey: String) {
 
     private fun initializeRetrofit() {
         _retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.LASTFM_API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
