@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.android.vinylstore.R
-import com.android.vinylstore.activity.AlbumActivity
+import com.android.vinylstore.presentation.AlbumActivity
 import com.android.vinylstore.databinding.AlbumItemBinding
 import com.android.vinylstore.lastfm_api.classes.Album
 import com.squareup.picasso.Picasso

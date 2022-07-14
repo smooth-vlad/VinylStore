@@ -11,7 +11,7 @@ import android.widget.Filterable
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.android.vinylstore.activity.ArtistActivity
+import com.android.vinylstore.presentation.artist.view.ArtistActivity
 import com.android.vinylstore.databinding.ArtistItemBinding
 import com.android.vinylstore.lastfm_api.classes.Artist
 import java.util.*

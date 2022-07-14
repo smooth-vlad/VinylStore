@@ -2,8 +2,8 @@ package com.android.vinylstore
 
 import android.app.Application
 import android.content.Context
-import com.android.vinylstore.di.AppComponent
-import com.android.vinylstore.di.DaggerAppComponent
+import com.android.vinylstore.di.app.DaggerAppComponent
+import com.android.vinylstore.di.app.AppComponent
 
 class Root : Application() {
 

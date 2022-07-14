@@ -1,8 +1,7 @@
-package com.android.vinylstore.di
+package com.android.vinylstore.di.app
 
 import com.android.vinylstore.lastfm_api.AlbumsApiService
 import dagger.Component
-import javax.inject.Inject
 
 @Component(modules = [AppModule::class])
 interface AppComponent {

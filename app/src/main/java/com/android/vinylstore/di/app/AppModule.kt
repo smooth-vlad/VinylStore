@@ -1,4 +1,4 @@
-package com.android.vinylstore.di
+package com.android.vinylstore.di.app
 
 import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.lastfm_api.AlbumsApiService

@@ -1,4 +1,4 @@
-package com.android.vinylstore.activity
+package com.android.vinylstore.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,6 @@ import com.android.vinylstore.Root
 import com.android.vinylstore.adapters.TrackItemAdapter
 import com.android.vinylstore.adapters.VinylPagerAdapter
 import com.android.vinylstore.databinding.ActivityAlbumBinding
-import com.android.vinylstore.lastfm_api.classes.Artist
 import com.android.vinylstore.lastfm_api.classes.Tag
 import com.android.vinylstore.lastfm_api.classes.Track
 import com.android.vinylstore.lastfm_api.responses.AlbumInfoResponse
@@ -24,7 +23,6 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Calendar
 
 
 class AlbumActivity : AppCompatActivity() {
