@@ -59,11 +59,11 @@ class ArtistActivity : AppCompatActivity() {
                 AlbumItemAdapter(it.filterNot { album -> album.name == "(null)" })
             removeShimmerAlbumsImage()
             Log.d("ArtistActivity", "Number of albums found: " + it.size)
-            val topAlbum = it[0]
-            val url = topAlbum.image.last().path
-            if (url.isNotEmpty()) {
+        }
+        viewModel.artistImagePath.observe(this) {
+            if (it.isNotEmpty()) {
                 Picasso.with(this@ArtistActivity)
-                    .load(url)
+                    .load(it)
                     .into(binding.artistImageIv, object : Callback {
                         override fun onSuccess() {
                             removeShimmerArtistImage()
@@ -97,24 +97,24 @@ class ArtistActivity : AppCompatActivity() {
         binding.artistImageShimmer.apply {
             stopShimmer()
             visibility = View.GONE
-            binding.artistImageIv.visibility = View.VISIBLE
         }
+        binding.artistImageIv.visibility = View.VISIBLE
     }
 
     private fun removeShimmerTags() {
         binding.tagsShimmer.apply {
             stopShimmer()
             visibility = View.GONE
-            binding.tagsCg.visibility = View.VISIBLE
         }
+        binding.tagsCg.visibility = View.VISIBLE
     }
 
     private fun removeShimmerAlbumsImage() {
         binding.albumsShimmer.apply {
             stopShimmer()
             visibility = View.GONE
-            binding.albumsRv.visibility = View.VISIBLE
         }
+        binding.albumsRv.visibility = View.VISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

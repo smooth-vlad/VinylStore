@@ -16,7 +16,7 @@
         android:name=".Root"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.AlbumActivity"
+            android:name=".presentation.album.view.AlbumActivity"
             android:exported="false"/>
         <activity
             android:name=".presentation.artist.view.ArtistActivity"

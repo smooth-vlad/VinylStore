@@ -32,6 +32,9 @@ class ArtistViewModel(private val api: AlbumsApiService, private val artistName:
     private var _topAlbums: MutableLiveData<List<Album>> = MutableLiveData()
     val topAlbums: LiveData<List<Album>> = _topAlbums
 
+    private var _artistImagePath: MutableLiveData<String> = MutableLiveData()
+    val artistImagePath: LiveData<String> = _artistImagePath
+
     fun refresh() {
         requestTopAlbums()
         requestArtistInfo()
@@ -75,16 +78,14 @@ class ArtistViewModel(private val api: AlbumsApiService, private val artistName:
         response.body()?.let {
             _topAlbums.postValue(it.topAlbums.album)
 
-//            hidePlaceHolderUi()
-//            showMainLayout()
+            val topAlbum = it.topAlbums.album[0]
+            _artistImagePath.postValue(topAlbum.image.last().path)
         }
     }
 
     private fun onArtistInfoResponse(response: Response<ArtistInfoResponse?>) {
         response.body()?.let {
             _tags.postValue(it.artist.tags.tag)
-//            hidePlaceHolderUi()
-//            showMainLayout()
         }
     }
 }
