@@ -10,6 +10,7 @@ import com.android.vinylstore.lastfm_api.AlbumsApiService
 import com.android.vinylstore.lastfm_api.classes.Tag
 import com.android.vinylstore.lastfm_api.classes.Track
 import com.android.vinylstore.lastfm_api.responses.AlbumInfoResponse
+import com.android.vinylstore.presentation.RefreshingViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +19,7 @@ class AlbumViewModel(
     private val api: AlbumsApiService,
     private val albumName: String,
     private val artistName: String
-) : ViewModel() {
+) : RefreshingViewModel() {
 
     private var _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
@@ -38,22 +39,25 @@ class AlbumViewModel(
     private var _artistImagePath: MutableLiveData<String> = MutableLiveData()
     val artistImagePath: LiveData<String> = _artistImagePath
 
-    fun refresh() {
+    override fun onRefresh() {
         requestAlbumInfo()
     }
 
     private fun requestAlbumInfo() {
         val call = api.getInfoAlbum(BuildConfig.LASTFM_API_KEY, artistName, albumName)
 
+        _isDataLoading.value = true
         call.enqueue(object : Callback<AlbumInfoResponse> {
             override fun onResponse(
                 call: Call<AlbumInfoResponse?>?,
                 response: Response<AlbumInfoResponse?>
             ) {
+                _isDataLoading.value = false
                 onAlbumInfoResponse(response)
             }
 
             override fun onFailure(call: Call<AlbumInfoResponse?>?, throwable: Throwable) {
+                _isDataLoading.value = false
                 _error.postValue(throwable.localizedMessage)
             }
         })

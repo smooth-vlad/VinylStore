@@ -96,6 +96,10 @@ class AlbumActivity : AppCompatActivity() {
             binding.tracksRv.adapter = TrackItemAdapter(it)
             removeShimmer(binding.tracksShimmer, binding.tracksRv)
         }
+        viewModel.isDataLoading.observe(this) {
+            if (!it && binding.albumSwipeRefresh.isRefreshing)
+                binding.albumSwipeRefresh.isRefreshing = false
+        }
 
         val vinylViewPagerAdapter = VinylPagerAdapter(this)
         binding.vinylVp.setPageTransformer(
@@ -116,6 +120,15 @@ class AlbumActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+        binding.albumSwipeRefresh.setOnRefreshListener {
+            if (!viewModel.refresh()) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.refresh_on_loading_error_message),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
         setSupportActionBar(binding.albumScreenToolbar)
         title = "$artistName - $albumName"
@@ -145,9 +158,11 @@ class AlbumActivity : AppCompatActivity() {
     }
 
     private fun removeShimmer(shimmer: ShimmerFrameLayout, viewToShow: View) {
-        shimmer.apply {
-            stopShimmer()
-            visibility = View.GONE
+        if (shimmer.visibility != View.GONE) {
+            shimmer.apply {
+                stopShimmer()
+                visibility = View.GONE
+            }
         }
         viewToShow.visibility = View.VISIBLE
     }

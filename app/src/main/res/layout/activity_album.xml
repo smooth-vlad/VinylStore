@@ -27,357 +27,365 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/activity_album_layout"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/album_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/activity_album_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <FrameLayout
-                    android:id="@+id/vinyl_showcase"
-                    android:layout_width="match_parent"
-                    android:layout_height="320dp"
-                    android:background="?attr/colorSurfaceVariant"
-                    android:visibility="invisible">
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/vinyl_vp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/album_iv"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="50dp"
-                        android:elevation="4dp"
-                        android:padding="4dp"
-                        android:src="@drawable/image_placeholder"
-                        app:shapeAppearanceOverlay="@style/albumImageViewFrame" />
-
-                </FrameLayout>
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/vinyl_showcase_shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:shimmer_highlight_alpha="0.5">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/placeholder" />
-
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-            </FrameLayout>
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/album_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:autoSizeTextType="uniform"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-black"
-                    android:letterSpacing=".25"
-                    android:maxWidth="340dp"
-                    android:maxLines="1"
-                    android:textSize="24sp"
-                    tools:text="Moral Panic" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:id="@+id/vinyl_showcase"
+                        android:layout_width="match_parent"
+                        android:layout_height="320dp"
+                        android:background="?attr/colorSurfaceVariant"
+                        android:visibility="invisible">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/vinyl_vp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/album_iv"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="50dp"
+                            android:elevation="4dp"
+                            android:padding="4dp"
+                            android:src="@drawable/image_placeholder"
+                            app:shapeAppearanceOverlay="@style/albumImageViewFrame" />
+
+                    </FrameLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/vinyl_showcase_shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:shimmer_highlight_alpha="0.5">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/placeholder" />
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                </FrameLayout>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/plays_layout_cl"
+                    <TextView
+                        android:id="@+id/album_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_gravity="center"
+                        android:autoSizeTextType="uniform"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-black"
+                        android:letterSpacing=".25"
+                        android:maxWidth="340dp"
+                        android:maxLines="1"
+                        android:textSize="24sp"
+                        tools:text="Moral Panic" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/plays_title_tv"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/plays_layout_cl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="4dp"
-                            android:text="@string/plays_title_text"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_baseline_play_arrow"
-                            app:drawableTint="?attr/colorOnSurface" />
+                            android:orientation="vertical">
 
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center">
-
-                            <TextView
-                                android:id="@+id/plays_value_tv"
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/plays_title_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="2dp"
-                                android:fontFamily="sans-serif-light"
-                                android:maxLines="1"
-                                android:textSize="24sp"
-                                android:visibility="invisible"
-                                tools:text="1 425 124" />
+                                android:drawablePadding="4dp"
+                                android:text="@string/plays_title_text"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:drawableStartCompat="@drawable/ic_baseline_play_arrow"
+                                app:drawableTint="?attr/colorOnSurface" />
 
-                            <com.facebook.shimmer.ShimmerFrameLayout
-                                android:id="@+id/plays_value_shimmer"
+                            <FrameLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                app:shimmer_highlight_alpha="0.5">
+                                android:layout_gravity="center">
 
                                 <TextView
-                                    android:layout_width="120dp"
+                                    android:id="@+id/plays_value_tv"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@color/placeholder"
-                                    android:textSize="24sp" />
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="2dp"
+                                    android:fontFamily="sans-serif-light"
+                                    android:maxLines="1"
+                                    android:textSize="24sp"
+                                    android:visibility="invisible"
+                                    tools:text="1 425 124" />
 
-                            </com.facebook.shimmer.ShimmerFrameLayout>
+                                <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:id="@+id/plays_value_shimmer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    app:shimmer_highlight_alpha="0.5">
 
-                        </FrameLayout>
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/placeholder"
+                                        android:textSize="24sp" />
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                                </com.facebook.shimmer.ShimmerFrameLayout>
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/release_layout_cl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:orientation="vertical">
+                            </FrameLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/likes_title_tv"
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/release_layout_cl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="4dp"
-                            android:text="@string/likes_title_text"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_baseline_like"
-                            app:drawableTint="?attr/colorOnSurface" />
+                            android:layout_marginStart="32dp"
+                            android:orientation="vertical">
 
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center">
-
-                            <TextView
-                                android:id="@+id/likes_value_tv"
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/likes_title_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="2dp"
-                                android:fontFamily="sans-serif-light"
-                                android:maxLines="1"
-                                android:textSize="24sp"
-                                android:visibility="invisible"
-                                tools:text="64 019" />
+                                android:drawablePadding="4dp"
+                                android:text="@string/likes_title_text"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:drawableStartCompat="@drawable/ic_baseline_like"
+                                app:drawableTint="?attr/colorOnSurface" />
 
-                            <com.facebook.shimmer.ShimmerFrameLayout
-                                android:id="@+id/likes_value_shimmer"
+                            <FrameLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                app:shimmer_highlight_alpha="0.5">
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center">
 
                                 <TextView
-                                    android:layout_width="120dp"
+                                    android:id="@+id/likes_value_tv"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@color/placeholder"
-                                    android:textSize="24sp" />
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="2dp"
+                                    android:fontFamily="sans-serif-light"
+                                    android:maxLines="1"
+                                    android:textSize="24sp"
+                                    android:visibility="invisible"
+                                    tools:text="64 019" />
 
-                            </com.facebook.shimmer.ShimmerFrameLayout>
+                                <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:id="@+id/likes_value_shimmer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    app:shimmer_highlight_alpha="0.5">
 
-                        </FrameLayout>
+                                    <TextView
+                                        android:layout_width="120dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/placeholder"
+                                        android:textSize="24sp" />
+
+                                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            </FrameLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:backgroundTint="?attr/colorOnSurface"
-                    android:text="@string/buy_vinyl_button_text" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/screen_horizontal_margin">
-
-                <ImageView
-                    android:layout_width="@dimen/icon_s_size"
-                    android:layout_height="@dimen/icon_s_size"
-                    android:src="@drawable/ic_baseline_tag"
-                    app:tint="?attr/colorOnSurface" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="@string/tags_section_title"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/tags_cg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:paddingHorizontal="@dimen/screen_horizontal_margin"
-                    android:visibility="invisible"
-                    app:chipSpacingHorizontal="12dp"
-                    app:chipSpacingVertical="0dp" />
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/tags_shimmer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:shimmer_highlight_alpha="0.5">
-
-                    <com.google.android.material.chip.ChipGroup
+                    <Button
+                        android:id="@+id/buy_vinyl_b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        android:backgroundTint="?attr/colorOnSurface"
+                        android:text="@string/buy_vinyl_button_text"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/screen_horizontal_margin">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_s_size"
+                        android:layout_height="@dimen/icon_s_size"
+                        android:src="@drawable/ic_baseline_tag"
+                        app:tint="?attr/colorOnSurface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/tags_section_title"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/tags_cg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:paddingHorizontal="@dimen/screen_horizontal_margin"
+                        android:visibility="invisible"
                         app:chipSpacingHorizontal="12dp"
-                        app:chipSpacingVertical="0dp">
+                        app:chipSpacingVertical="0dp" />
 
-                        <View
-                            android:layout_width="80dp"
-                            android:layout_height="32dp"
-                            android:background="@color/placeholder" />
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/tags_shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:shimmer_highlight_alpha="0.5">
 
-                        <View
-                            android:layout_width="80dp"
-                            android:layout_height="32dp"
-                            android:background="@color/placeholder" />
+                        <com.google.android.material.chip.ChipGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:paddingHorizontal="@dimen/screen_horizontal_margin"
+                            app:chipSpacingHorizontal="12dp"
+                            app:chipSpacingVertical="0dp">
 
-                        <View
-                            android:layout_width="80dp"
-                            android:layout_height="32dp"
-                            android:background="@color/placeholder" />
+                            <View
+                                android:layout_width="80dp"
+                                android:layout_height="32dp"
+                                android:background="@color/placeholder" />
 
-                        <View
-                            android:layout_width="80dp"
-                            android:layout_height="32dp"
-                            android:background="@color/placeholder" />
+                            <View
+                                android:layout_width="80dp"
+                                android:layout_height="32dp"
+                                android:background="@color/placeholder" />
 
-                    </com.google.android.material.chip.ChipGroup>
+                            <View
+                                android:layout_width="80dp"
+                                android:layout_height="32dp"
+                                android:background="@color/placeholder" />
 
-                </com.facebook.shimmer.ShimmerFrameLayout>
+                            <View
+                                android:layout_width="80dp"
+                                android:layout_height="32dp"
+                                android:background="@color/placeholder" />
 
-            </FrameLayout>
+                        </com.google.android.material.chip.ChipGroup>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/screen_horizontal_margin">
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/icon_s_size"
-                    android:layout_height="@dimen/icon_s_size"
-                    android:src="@drawable/ic_baseline_tracks"
-                    app:tint="?attr/colorOnSurface" />
+                </FrameLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="@string/tracks_list_title"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/tracks_rv"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/screen_horizontal_margin"
-                    android:visibility="invisible"
-                    tools:listitem="@layout/track_item" />
+                    android:layout_marginTop="28dp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/screen_horizontal_margin">
 
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/tracks_shimmer"
+                    <ImageView
+                        android:layout_width="@dimen/icon_s_size"
+                        android:layout_height="@dimen/icon_s_size"
+                        android:src="@drawable/ic_baseline_tracks"
+                        app:tint="?attr/colorOnSurface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/tracks_list_title"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:shimmer_highlight_alpha="0.5">
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/tracks_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/screen_horizontal_margin">
+                        android:paddingHorizontal="@dimen/screen_horizontal_margin"
+                        android:visibility="invisible"
+                        tools:listitem="@layout/track_item" />
 
-                        <include layout="@layout/shimmer_track_item" />
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/tracks_shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:shimmer_highlight_alpha="0.5">
 
-                        <include layout="@layout/shimmer_track_item" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="@dimen/screen_horizontal_margin">
 
-                        <include layout="@layout/shimmer_track_item" />
+                            <include layout="@layout/shimmer_track_item" />
 
-                        <include layout="@layout/shimmer_track_item" />
+                            <include layout="@layout/shimmer_track_item" />
 
-                        <include layout="@layout/shimmer_track_item" />
+                            <include layout="@layout/shimmer_track_item" />
 
-                        <include layout="@layout/shimmer_track_item" />
+                            <include layout="@layout/shimmer_track_item" />
 
-                    </LinearLayout>
+                            <include layout="@layout/shimmer_track_item" />
 
-                </com.facebook.shimmer.ShimmerFrameLayout>
+                            <include layout="@layout/shimmer_track_item" />
 
-            </FrameLayout>
+                        </LinearLayout>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
-    </androidx.core.widget.NestedScrollView>
+                </FrameLayout>
 
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

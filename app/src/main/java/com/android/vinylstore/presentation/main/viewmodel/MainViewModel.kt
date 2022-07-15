@@ -9,13 +9,12 @@ import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.lastfm_api.AlbumsApiService
 import com.android.vinylstore.lastfm_api.classes.Artist
 import com.android.vinylstore.lastfm_api.responses.TopArtistResponse
+import com.android.vinylstore.presentation.RefreshingViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(private val api: AlbumsApiService) : ViewModel() {
-    private var _isDataLoading = MutableLiveData(false)
-    val isDataLoading: LiveData<Boolean> = _isDataLoading
+class MainViewModel(private val api: AlbumsApiService) : RefreshingViewModel() {
 
     private var _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
@@ -49,14 +48,8 @@ class MainViewModel(private val api: AlbumsApiService) : ViewModel() {
         }
     }
 
-    // Returns false if refreshing failed
-    fun refresh(): Boolean {
-        return if (isDataLoading.value == true) {
-            false
-        } else {
-            requestTopArtists()
-            true
-        }
+    override fun onRefresh() {
+        requestTopArtists()
     }
 }
 
