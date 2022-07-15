@@ -1,28 +1,23 @@
 package com.android.vinylstore.presentation.artist.viewmodel
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.android.vinylstore.BuildConfig
-import com.android.vinylstore.R
-import com.android.vinylstore.Root
-import com.android.vinylstore.adapters.AlbumItemAdapter
 import com.android.vinylstore.lastfm_api.AlbumsApiService
 import com.android.vinylstore.lastfm_api.classes.Album
 import com.android.vinylstore.lastfm_api.classes.Tag
 import com.android.vinylstore.lastfm_api.responses.ArtistInfoResponse
 import com.android.vinylstore.lastfm_api.responses.TopAlbumsResponse
-import com.squareup.picasso.Picasso
+import com.android.vinylstore.presentation.RefreshingViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ArtistViewModel(private val api: AlbumsApiService, private val artistName: String) :
-    ViewModel() {
+    RefreshingViewModel() {
     private var _error: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = _error
 
@@ -35,7 +30,12 @@ class ArtistViewModel(private val api: AlbumsApiService, private val artistName:
     private var _artistImagePath: MutableLiveData<String> = MutableLiveData()
     val artistImagePath: LiveData<String> = _artistImagePath
 
-    fun refresh() {
+    companion object {
+        const val REQUEST_ARTIST_INFO_TAG = "requestArtistInfo"
+        const val REQUEST_TOP_ALBUMS_TAG = "requestTopAlbums"
+    }
+
+    override fun onRefresh() {
         requestTopAlbums()
         requestArtistInfo()
     }
@@ -43,15 +43,18 @@ class ArtistViewModel(private val api: AlbumsApiService, private val artistName:
     private fun requestTopAlbums() {
         val call = api.getTopAlbums(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName!!)
 
+        startLoading(REQUEST_TOP_ALBUMS_TAG)
         call.enqueue(object : Callback<TopAlbumsResponse> {
             override fun onResponse(
                 call: Call<TopAlbumsResponse?>?,
                 response: Response<TopAlbumsResponse?>
             ) {
+                endLoading(REQUEST_TOP_ALBUMS_TAG)
                 onTopAlbumsResponse(response)
             }
 
             override fun onFailure(call: Call<TopAlbumsResponse?>?, throwable: Throwable) {
+                endLoading(REQUEST_TOP_ALBUMS_TAG)
                 _error.postValue("requestTopAlbums():  ${throwable.localizedMessage}")
             }
         })
@@ -60,15 +63,18 @@ class ArtistViewModel(private val api: AlbumsApiService, private val artistName:
     private fun requestArtistInfo() {
         val call = api.getInfoArtist(apiKey = BuildConfig.LASTFM_API_KEY, artist = artistName)
 
+        startLoading(REQUEST_ARTIST_INFO_TAG)
         call.enqueue(object : Callback<ArtistInfoResponse> {
             override fun onResponse(
                 call: Call<ArtistInfoResponse?>?,
                 response: Response<ArtistInfoResponse?>
             ) {
+                endLoading(REQUEST_ARTIST_INFO_TAG)
                 onArtistInfoResponse(response)
             }
 
             override fun onFailure(call: Call<ArtistInfoResponse?>?, throwable: Throwable) {
+                endLoading(REQUEST_ARTIST_INFO_TAG)
                 _error.postValue("requestArtistInfo():  ${throwable.localizedMessage}")
             }
         })

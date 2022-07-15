@@ -39,6 +39,10 @@ class AlbumViewModel(
     private var _artistImagePath: MutableLiveData<String> = MutableLiveData()
     val artistImagePath: LiveData<String> = _artistImagePath
 
+    companion object {
+        const val REQUEST_ALBUM_INFO_TAG = "requestAlbumInfo"
+    }
+
     override fun onRefresh() {
         requestAlbumInfo()
     }
@@ -46,18 +50,18 @@ class AlbumViewModel(
     private fun requestAlbumInfo() {
         val call = api.getInfoAlbum(BuildConfig.LASTFM_API_KEY, artistName, albumName)
 
-        _isDataLoading.value = true
+        startLoading(REQUEST_ALBUM_INFO_TAG)
         call.enqueue(object : Callback<AlbumInfoResponse> {
             override fun onResponse(
                 call: Call<AlbumInfoResponse?>?,
                 response: Response<AlbumInfoResponse?>
             ) {
-                _isDataLoading.value = false
+                endLoading(REQUEST_ALBUM_INFO_TAG)
                 onAlbumInfoResponse(response)
             }
 
             override fun onFailure(call: Call<AlbumInfoResponse?>?, throwable: Throwable) {
-                _isDataLoading.value = false
+                endLoading(REQUEST_ALBUM_INFO_TAG)
                 _error.postValue(throwable.localizedMessage)
             }
         })

@@ -22,27 +22,31 @@ class MainViewModel(private val api: AlbumsApiService) : RefreshingViewModel() {
     private var _artists: MutableLiveData<List<Artist>> = MutableLiveData()
     val artists: LiveData<List<Artist>> = _artists
 
+    companion object {
+        const val REQUEST_TOP_ARTISTS_TAG = "requestTopArtists"
+    }
+
     private fun requestTopArtists() {
         val call = api.getTopArtists(BuildConfig.LASTFM_API_KEY, limit = 100)
 
-        _isDataLoading.value = true
+        startLoading(REQUEST_TOP_ARTISTS_TAG)
         call.enqueue(object : Callback<TopArtistResponse> {
             override fun onResponse(
                 call: Call<TopArtistResponse?>?,
                 response: Response<TopArtistResponse?>
             ) {
+                endLoading(REQUEST_TOP_ARTISTS_TAG)
                 onTopArtistsResponse(response)
             }
 
             override fun onFailure(call: Call<TopArtistResponse?>?, throwable: Throwable) {
+                endLoading(REQUEST_TOP_ARTISTS_TAG)
                 _error.value = throwable.localizedMessage
-                _isDataLoading.value = false
             }
         })
     }
 
     private fun onTopArtistsResponse(response: Response<TopArtistResponse?>) {
-        _isDataLoading.value = false
         response.body()?.let {
             _artists.postValue(it.artists.artist)
         }

@@ -78,6 +78,20 @@ class ArtistActivity : AppCompatActivity() {
                 binding.artistImageIv.setImageResource(R.drawable.image_placeholder)
             }
         }
+        viewModel.isDataLoading.observe(this) {
+            if (!it && binding.artistSwipeRefresh.isRefreshing)
+                binding.artistSwipeRefresh.isRefreshing = false
+        }
+
+        binding.artistSwipeRefresh.setOnRefreshListener {
+            if (!viewModel.refresh()) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.refresh_on_loading_error_message),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
         title = artistName
@@ -86,10 +100,12 @@ class ArtistActivity : AppCompatActivity() {
     }
 
     private fun inflateTags(tags: List<Tag>) {
+        val chipGroup = binding.tagsCg
+        chipGroup.removeAllViews()
         for (tag in tags) {
             val chip = Chip(this)
             chip.text = tag.name
-            binding.tagsCg.addView(chip)
+            chipGroup.addView(chip)
         }
     }
 
