@@ -14,15 +14,23 @@
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3675" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/image_preview.xml" value="0.3675" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/tag.xml" value="0.2945" />
-        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_album.xml" value="0.5" />
-        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_artist.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_album.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_artist.xml" value="0.1" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_main.xml" value="0.2807153965785381" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/album_item.xml" value="0.365625" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/artist_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_vinyl_type.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_activity_album.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_activity_artist.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_album_item.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_artist_item.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_artists_item_layout.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_track_item.xml" value="0.30012825994014536" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/track_item.xml" value="0.75" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/vinyl_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/menu/main_activity_menu.xml" value="0.2759259259259259" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
