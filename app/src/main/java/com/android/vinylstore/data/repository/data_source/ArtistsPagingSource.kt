@@ -1,4 +1,4 @@
-package com.android.vinylstore.data
+package com.android.vinylstore.data.repository.data_source
 
 import android.util.Log
 import androidx.paging.PagingSource
@@ -24,6 +24,11 @@ private const val STARTING_KEY = 1
 class ArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
     PagingSource<Int, Artist>() {
 
+    companion object {
+        const val FETCHING_SIZE = 50
+        private const val TAG = "ArtistsPagingSource"
+    }
+
     override fun getRefreshKey(state: PagingState<Int, Artist>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
         return ensureValidKey(anchorPosition / state.config.pageSize)
@@ -35,15 +40,20 @@ class ArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
         val call = albumsApiService.getTopArtists(
             BuildConfig.LASTFM_API_KEY,
             page = start,
-            limit = params.loadSize
+            limit = FETCHING_SIZE
         )
-        Log.d("ABC", "${call.request().url()}")
+        Log.d(TAG, "call url: ${call.request().url()}")
 
         try {
             val response = withContext(Dispatchers.Default) { call.execute() }
             response.body().artists.let {
+                Log.d(TAG, "response: prompted page: $start | got page: ${it.attr.page}")
+                Log.d(TAG, "response: real size: ${it.artist.size} | attr size: ${it.attr.perPage}")
+
                 return LoadResult.Page(
-                    data = it.artist,
+                    // take last 50 because this api does something crazy and return more elements than you prompted sometimes
+                    // and these elements are taken from previous pages, so just cut them
+                    data = it.artist.takeLast(FETCHING_SIZE),
                     prevKey = when (start) {
                         STARTING_KEY -> null
                         else -> ensureValidKey(start - 1)
@@ -52,7 +62,7 @@ class ArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
                 )
             }
         } catch (throwable: Throwable) {
-            Log.d("ABC", "$throwable")
+            Log.d(TAG, "$throwable")
             return LoadResult.Error(throwable)
         }
 

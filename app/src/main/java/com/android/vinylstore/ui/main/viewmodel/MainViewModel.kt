@@ -3,15 +3,13 @@ package com.android.vinylstore.ui.main.viewmodel
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.paging.*
 import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.data.lastfm_api.AlbumsApiService
 import com.android.vinylstore.data.lastfm_api.classes.Artist
 import com.android.vinylstore.data.lastfm_api.responses.TopArtistResponse
 import com.android.vinylstore.data.repository.VinylsRepository
+import com.android.vinylstore.data.repository.data_source.ArtistsPagingSource
 import com.android.vinylstore.ui.RefreshingViewModel
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
@@ -28,12 +26,11 @@ class MainViewModel @Inject constructor(private val vinylsRepository: VinylsRepo
 //    val artists: LiveData<List<Artist>> = _artists
 
     companion object {
-        private const val FETCHING_SIZE = 50
         const val REQUEST_TOP_ARTISTS_TAG = "requestTopArtists"
     }
 
     val items: Flow<PagingData<Artist>> = Pager(
-        config = PagingConfig(FETCHING_SIZE, enablePlaceholders = false),
+        config = PagingConfig(ArtistsPagingSource.FETCHING_SIZE, enablePlaceholders = false),
         pagingSourceFactory = {vinylsRepository.artistsPagingSource()}
     )
         .flow
