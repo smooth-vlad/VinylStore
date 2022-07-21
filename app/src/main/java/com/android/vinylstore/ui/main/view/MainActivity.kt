@@ -5,26 +5,27 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.vinylstore.R
 import com.android.vinylstore.Root
 import com.android.vinylstore.ui.main.viewmodel.MainViewModel
 import com.android.vinylstore.ui.adapters.ArtistItemAdapter
 import com.android.vinylstore.databinding.ActivityMainBinding
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
     private lateinit var binding: ActivityMainBinding
 
     @Inject
@@ -42,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         val items = viewModel.items
         val artistItemAdapter = ArtistItemAdapter()
-
         binding.vinylRecyclerView.adapter = artistItemAdapter
 
         lifecycleScope.launch {
@@ -53,30 +53,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        viewModel.artists.observe(this) {
-//            it.let {
-//                val adapter = ArtistItemAdapter(it)
-//                Log.d("MainActivity", "Number of artists: " + it.size)
-//                binding.vinylRecyclerView.adapter = adapter
-//
-//                hidePlaceHolderUi()
-//                unlockSearchMenuItem()
-//            }
-//        }
-
-//        viewModel.error.observe(this) {
-//            Log.e("MainActivity", it)
-//            Toast.makeText(
-//                this@MainActivity,
-//                getString(R.string.connection_failure),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-
-        viewModel.isDataLoading.observe(this) {
-            if (!it && binding.artistsSwipeRefresh.isRefreshing)
-                binding.artistsSwipeRefresh.isRefreshing = false
-        }
+        artistItemAdapter.addOnPagesUpdatedListener(fun() {
+            Log.d(TAG, "OnPagesUpdated")
+            binding.artistsSwipeRefresh.apply {
+                if (isRefreshing)
+                    isRefreshing = false
+            }
+            if (binding.activityMainShimmer.isShimmerVisible)
+                hideShimmer()
+            if (search?.isEnabled == false)
+                unlockSearchMenuItem()
+        })
 
         binding.vinylRecyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -86,27 +73,21 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.artistsSwipeRefresh.setOnRefreshListener {
-            if (!viewModel.refresh()) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.refresh_on_loading_error_message),
-                    Toast.LENGTH_SHORT
-                ).show()
+            artistItemAdapter.refresh()
+            lifecycleScope.launch {
+                delay(750)
+                binding.artistsSwipeRefresh.isRefreshing = false
             }
         }
 
-        binding.activityMainShimmer.startShimmer()
-
         setSupportActionBar(binding.myToolbarMain)
-
-        viewModel.refresh()
     }
 
     private fun unlockSearchMenuItem() {
         search?.isEnabled = true
     }
 
-    private fun hidePlaceHolderUi() {
+    private fun hideShimmer() {
         binding.activityMainShimmer.apply {
             this.stopShimmer()
             this.visibility = View.GONE

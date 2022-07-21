@@ -17,63 +17,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val vinylsRepository: VinylsRepository) : RefreshingViewModel() {
-
-//    private var _error: MutableLiveData<String> = MutableLiveData()
-//    val error: LiveData<String> = _error
-//
-//    private var _artists: MutableLiveData<List<Artist>> = MutableLiveData()
-//    val artists: LiveData<List<Artist>> = _artists
+class MainViewModel @Inject constructor(private val vinylsRepository: VinylsRepository) :
+    ViewModel() {
 
     companion object {
-        const val REQUEST_TOP_ARTISTS_TAG = "requestTopArtists"
+        private const val TAG = "MainViewModel"
     }
 
     val items: Flow<PagingData<Artist>> = Pager(
         config = PagingConfig(ArtistsPagingSource.FETCHING_SIZE, enablePlaceholders = false),
-        pagingSourceFactory = {vinylsRepository.artistsPagingSource()}
+        pagingSourceFactory = { vinylsRepository.artistsPagingSource() }
     )
         .flow
         .cachedIn(viewModelScope)
-
-//    private fun requestTopArtists(page: Int, createNewList: Boolean = false) {
-//        val call = api.getTopArtists(BuildConfig.LASTFM_API_KEY, page = page)
-//        Log.d("ABC", "${call.request().url()}")
-//
-//        startLoading(REQUEST_TOP_ARTISTS_TAG)
-//        call.enqueue(object : Callback<TopArtistResponse> {
-//            override fun onResponse(
-//                call: Call<TopArtistResponse?>?,
-//                response: Response<TopArtistResponse?>
-//            ) {
-//                endLoading(REQUEST_TOP_ARTISTS_TAG)
-//                onTopArtistsResponse(response, createNewList)
-//            }
-//
-//            override fun onFailure(call: Call<TopArtistResponse?>?, throwable: Throwable) {
-//                endLoading(REQUEST_TOP_ARTISTS_TAG)
-//                _error.value = throwable.localizedMessage
-//            }
-//        })
-//    }
-
-//    private fun onTopArtistsResponse(
-//        response: Response<TopArtistResponse?>,
-//        createNewList: Boolean
-//    ) {
-//        response.body()?.let { src ->
-//            val newData = src.artists.artist.let {
-//                 it.slice(it.size - (requestLimit) until it.size)
-//            }
-//            if (artists.value == null || createNewList) {
-//                _artists.value = newData
-//            } else {
-//                _artists.value = _artists.value!! + newData
-//            }
-//        }
-//    }
-
-    override fun onRefresh() {
-//        requestTopArtists(1, true)
-    }
 }

@@ -64,41 +64,4 @@ class ArtistItemAdapter :
         }
     }
 
-//    override fun getFilter(): Filter {
-//        return object : Filter() {
-//            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                var filteredResults: List<Artist>? = null
-//                filteredResults = if (constraint!!.isEmpty()) {
-//                    dataSet
-//                } else {
-//                    getFilteredResults(
-//                        constraint.toString()
-//                            .lowercase(Locale.ROOT)
-//                    )
-//                }
-//
-//                val results = FilterResults()
-//                results.values = filteredResults
-//
-//                return results
-//            }
-//
-//            @SuppressLint("NotifyDataSetChanged")
-//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                filteredList = results!!.values as List<Artist>
-//                notifyDataSetChanged()
-//            }
-//        }
-//    }
-
-//    private fun getFilteredResults(constraint: String): List<Artist> {
-//        val results: MutableList<Artist> = ArrayList()
-//
-//        for (item in dataSet) {
-//            if (item.name.lowercase(Locale.ROOT).contains(constraint)) {
-//                results.add(item)
-//            }
-//        }
-//        return results
-//    }
 }

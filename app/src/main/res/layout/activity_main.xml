@@ -45,7 +45,6 @@
                 tools:listitem="@layout/artist_item" />
 
             <com.facebook.shimmer.ShimmerFrameLayout
-                android:visibility="gone"
                 android:id="@+id/activity_main_shimmer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
