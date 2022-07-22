@@ -32,11 +32,9 @@ class SearchArtistsFragment : Fragment() {
 
         val appComponent = Root.getAppComponent(requireContext())
         val activityMainComponent = appComponent.getActivityMainComponent()
-        val fragmentSearchArtistsComponent =
-            activityMainComponent.getFragmentSearchArtistsComponent()
         viewModel = ViewModelProvider(
             this,
-            fragmentSearchArtistsComponent.getSearchArtistsModelFactory()
+            activityMainComponent.getSearchArtistsViewModelFactory()
         )[SearchArtistsViewModel::class.java]
     }
 

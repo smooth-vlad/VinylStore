@@ -30,10 +30,9 @@ class TopArtistsFragment : Fragment() {
 
         val appComponent = Root.getAppComponent(requireContext())
         val activityMainComponent = appComponent.getActivityMainComponent()
-        val fragmentTopArtistsComponent = activityMainComponent.getFragmentTopArtistsComponent()
         viewModel = ViewModelProvider(
             this,
-            fragmentTopArtistsComponent.getTopArtistsModelFactory()
+            activityMainComponent.getTopArtistsViewModelFactory()
         )[TopArtistsViewModel::class.java]
     }
 
