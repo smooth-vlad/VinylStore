@@ -53,6 +53,9 @@ class SearchArtistsFragment : Fragment() {
         binding.searchArtistsRecyclerView.adapter = artistItemAdapter
 
         viewModel.items.observe(viewLifecycleOwner) { flow ->
+            if (artistItemAdapter.itemCount == 0) {
+                startShimmer()
+            }
             flow?.let {
                 lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -87,6 +90,15 @@ class SearchArtistsFragment : Fragment() {
             lifecycleScope.launch {
                 delay(750)
                 binding.searchArtistsSwipeRefreshLayout.isRefreshing = false
+            }
+        }
+    }
+
+    private fun startShimmer() {
+        binding.searchArtistsShimmer.apply {
+            if (!isShimmerStarted) {
+                startShimmer()
+                visibility = View.VISIBLE
             }
         }
     }

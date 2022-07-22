@@ -19,6 +19,8 @@
             tools:listitem="@layout/artist_item" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
+            app:shimmer_auto_start="false"
+            android:visibility="gone"
             android:id="@+id/search_artists_shimmer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
