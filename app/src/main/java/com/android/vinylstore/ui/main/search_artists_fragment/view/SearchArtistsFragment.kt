@@ -15,6 +15,8 @@ import com.android.vinylstore.Root
 import com.android.vinylstore.databinding.FragmentSearchArtistsBinding
 import com.android.vinylstore.ui.adapters.ArtistItemAdapter
 import com.android.vinylstore.ui.main.search_artists_fragment.viewmodel.SearchArtistsViewModel
+import com.android.vinylstore.ui.main.top_artists_fragment.view.TopArtistsFragment
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -65,10 +67,10 @@ class SearchArtistsFragment : Fragment() {
 
         artistItemAdapter.addOnPagesUpdatedListener(fun() {
             Log.d(TAG, "OnPagesUpdated")
-//            binding.artistsSwipeRefresh.apply {
-//                if (isRefreshing)
-//                    isRefreshing = false
-//            }
+            binding.searchArtistsSwipeRefreshLayout.apply {
+                if (isRefreshing)
+                    isRefreshing = false
+            }
             if (binding.searchArtistsShimmer.isShimmerVisible)
                 hideShimmer()
         })
@@ -79,6 +81,14 @@ class SearchArtistsFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        binding.searchArtistsSwipeRefreshLayout.setOnRefreshListener {
+            artistItemAdapter.refresh()
+            lifecycleScope.launch {
+                delay(750)
+                binding.searchArtistsSwipeRefreshLayout.isRefreshing = false
+            }
+        }
     }
 
     private fun hideShimmer() {
