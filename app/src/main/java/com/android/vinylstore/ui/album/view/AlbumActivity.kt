@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.vinylstore.Formatter.formatNumber
 import com.android.vinylstore.R
 import com.android.vinylstore.Root
 import com.android.vinylstore.ui.adapters.TrackItemAdapter
@@ -144,17 +145,6 @@ class AlbumActivity : AppCompatActivity() {
             chip.text = tag.name
             chipGroup.addView(chip)
         }
-    }
-
-    // Example: 2612351 -> 2 612 351
-    private fun formatNumber(src: String): String {
-        val result = StringBuilder()
-        src.reversed().forEachIndexed { index, c ->
-            if (index > 0 && index % 3 == 0)
-                result.append(' ')
-            result.append(c)
-        }
-        return result.reversed().toString()
     }
 
     private fun removeShimmer(shimmer: ShimmerFrameLayout, viewToShow: View) {

@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.android.vinylstore.Formatter
 import com.android.vinylstore.ui.artist.view.ArtistActivity
 import com.android.vinylstore.databinding.ArtistItemBinding
 import com.android.vinylstore.data.lastfm_api.classes.Artist
@@ -22,9 +23,10 @@ class ArtistItemAdapter :
         private val artistNameTextView: TextView = binding.artistNameTv
         val view: View get() = binding.root
 
-        fun bind(artist: Artist) {
+        fun bind(artist: Artist, position: Int) {
             binding.apply {
                 artistNameTextView.text = artist.name.trim()
+                positionTv.text = "${position + 1}."
 
                 itemView.setOnClickListener {
                     val intent = Intent(it.context, ArtistActivity::class.java)
@@ -46,7 +48,7 @@ class ArtistItemAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tile = getItem(position)
         if (tile != null) {
-            holder.bind(tile)
+            holder.bind(tile, position)
         }
     }
 
