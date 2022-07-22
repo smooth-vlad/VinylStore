@@ -1,9 +1,6 @@
 package com.android.vinylstore.data.lastfm_api
 
-import com.android.vinylstore.data.lastfm_api.responses.AlbumInfoResponse
-import com.android.vinylstore.data.lastfm_api.responses.ArtistInfoResponse
-import com.android.vinylstore.data.lastfm_api.responses.TopAlbumsResponse
-import com.android.vinylstore.data.lastfm_api.responses.TopArtistResponse
+import com.android.vinylstore.data.lastfm_api.responses.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,7 +13,17 @@ interface AlbumsApiService {
         @Query("limit") limit: Int? = null,
         @Query("format") format: String = "json",
         @Query("method") method: String = "chart.gettopartists"
-    ): Call<TopArtistResponse>
+    ): Call<TopArtistsResponse>
+
+    @GET("/2.0/")
+    fun searchArtists(
+        @Query("api_key") apiKey: String,
+        @Query("artist") artist: String,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("format") format: String = "json",
+        @Query("method") method: String = "artist.search"
+    ): Call<SearchArtistsResponse>
 
     @GET("/2.0/")
     fun getTopAlbums(

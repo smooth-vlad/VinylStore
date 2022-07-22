@@ -4,29 +4,19 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.android.vinylstore.BuildConfig
-import com.android.vinylstore.Root
 import com.android.vinylstore.data.lastfm_api.AlbumsApiService
 import com.android.vinylstore.data.lastfm_api.classes.Artist
-import com.android.vinylstore.data.lastfm_api.responses.TopArtistResponse
-import com.android.vinylstore.ui.main.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.Math.max
-import javax.inject.Inject
 
 private const val STARTING_KEY = 1
 
-class ArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
+class SearchArtistsPagingSource(private val albumsApiService: AlbumsApiService, private val query: String) :
     PagingSource<Int, Artist>() {
 
     companion object {
         const val FETCHING_SIZE = 50
-        private const val TAG = "ArtistsPagingSource"
+        private const val TAG = "SearchArtistsPagingSource"
     }
 
     override fun getRefreshKey(state: PagingState<Int, Artist>): Int? {
@@ -37,8 +27,9 @@ class ArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Artist> {
         val start = params.key ?: STARTING_KEY
 
-        val call = albumsApiService.getTopArtists(
+        val call = albumsApiService.searchArtists(
             BuildConfig.LASTFM_API_KEY,
+            query,
             page = start,
             limit = FETCHING_SIZE
         )
@@ -46,19 +37,20 @@ class ArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
 
         try {
             val response = withContext(Dispatchers.Default) { call.execute() }
-            response.body().artists.let {
-                Log.d(TAG, "response: prompted page: $start | got page: ${it.attr.page}")
-                Log.d(TAG, "response: real size: ${it.artist.size} | attr size: ${it.attr.perPage}")
+            response.body().results.let {
+                Log.d(TAG, "response: prompted page: $start | got page: ${it.searchQuery.startPage}")
+                Log.d(TAG, "response: real size: ${it.artistsMatches.artists.size} | attr size: ${it.itemsPerPage}")
+                Log.d(TAG, "response: total results: ${it.totalResults}")
 
                 return LoadResult.Page(
                     // take last 50 because this api does something crazy and return more elements than you prompted sometimes
                     // and these elements are taken from previous pages, so just cut them
-                    data = it.artist.takeLast(FETCHING_SIZE),
+                    data = it.artistsMatches.artists.takeLast(FETCHING_SIZE),
                     prevKey = when (start) {
                         STARTING_KEY -> null
                         else -> ensureValidKey(start - 1)
                     },
-                    nextKey = start + 1
+                    nextKey = if (it.artistsMatches.artists.size >= FETCHING_SIZE) start + 1 else null
                 )
             }
         } catch (throwable: Throwable) {

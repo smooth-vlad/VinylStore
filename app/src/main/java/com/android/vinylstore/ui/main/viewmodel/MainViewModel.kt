@@ -4,30 +4,45 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.paging.*
-import com.android.vinylstore.BuildConfig
-import com.android.vinylstore.data.lastfm_api.AlbumsApiService
 import com.android.vinylstore.data.lastfm_api.classes.Artist
-import com.android.vinylstore.data.lastfm_api.responses.TopArtistResponse
 import com.android.vinylstore.data.repository.VinylsRepository
-import com.android.vinylstore.data.repository.data_source.ArtistsPagingSource
-import com.android.vinylstore.ui.RefreshingViewModel
+import com.android.vinylstore.data.repository.data_source.TopArtistsPagingSource
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class MainViewModel @Inject constructor(private val vinylsRepository: VinylsRepository) :
+class MainViewModel(private val vinylsRepository: VinylsRepository) :
     ViewModel() {
 
     companion object {
         private const val TAG = "MainViewModel"
     }
 
-    val items: Flow<PagingData<Artist>> = Pager(
-        config = PagingConfig(ArtistsPagingSource.FETCHING_SIZE, enablePlaceholders = false),
-        pagingSourceFactory = { vinylsRepository.artistsPagingSource() }
-    )
-        .flow
-        .cachedIn(viewModelScope)
+    private val _isInSearchMode = MutableLiveData(false)
+    val isInSearchMode: LiveData<Boolean> = _isInSearchMode
+
+    init {
+        Log.d(TAG, "init")
+    }
+
+    /**
+     * Move to the fragment for searching
+     */
+    fun enterSearchMode() {
+        _isInSearchMode.value = true
+    }
+
+    /**
+     * Move back to the fragment with top artists
+     */
+    fun exitSearchMode() {
+        _isInSearchMode.value = false
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+class MainViewModelFactory(private val vinylsRepository: VinylsRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+        return MainViewModel(vinylsRepository) as T
+    }
 }
