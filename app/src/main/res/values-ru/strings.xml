@@ -14,4 +14,7 @@
     <string name="navigation_catalog">Каталог</string>
     <string name="navigation_favourites">Избранное</string>
     <string name="navigation_cart">Корзина</string>
+    <string name="cart_title">Cart</string>
+    <string name="cart_item_remove_text">Remove</string>
+    <string name="cart_item_add_to_favorites">Add To Favorites</string>
 </resources>

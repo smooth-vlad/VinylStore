@@ -10,16 +10,14 @@
     <com.google.android.material.appbar.AppBarLayout
         style="@style/Widget.Material3.AppBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSurface">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/my_toolbar_main"
             style="@style/Widget.Material3.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSurface"
-            app:menu="@menu/artists_activity_menu"
+            app:menu="@menu/artists_fragment_menu"
             app:title="@string/artists_activity_title"
             app:titleTextAppearance="@style/AppBarTitleTextAppearance"
             app:titleTextColor="?attr/colorOnSurface" />
