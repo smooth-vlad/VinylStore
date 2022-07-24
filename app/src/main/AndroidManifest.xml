@@ -30,9 +30,6 @@
         <activity
             android:name=".ui.catalog.artist.view.ArtistActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.catalog.artists.view.ArtistsActivity"
-            android:exported="false"/>
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@ class ArtistsViewModel(private val vinylsRepository: VinylsRepository) :
 }
 
 @Suppress("UNCHECKED_CAST")
-class MainViewModelFactory(private val vinylsRepository: VinylsRepository) : ViewModelProvider.Factory {
+class ArtistsViewModelFactory(private val vinylsRepository: VinylsRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
         return ArtistsViewModel(vinylsRepository) as T
     }

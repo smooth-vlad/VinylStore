@@ -12,6 +12,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.android.vinylstore.data.lastfm_api.classes.Artist
 import com.android.vinylstore.data.repository.VinylsRepository
+import com.android.vinylstore.data.repository.data_source.SearchArtistsPagingSource
 import com.android.vinylstore.data.repository.data_source.TopArtistsPagingSource
 import kotlinx.coroutines.flow.Flow
 
@@ -35,7 +36,7 @@ class SearchArtistsViewModel(
 
     fun initSearch(query: String) {
         _artistsSearchFlow = Pager(
-            config = PagingConfig(TopArtistsPagingSource.FETCHING_SIZE, enablePlaceholders = false),
+            config = PagingConfig(SearchArtistsPagingSource.FETCHING_SIZE, enablePlaceholders = false),
             pagingSourceFactory = { vinylsRepository.searchArtistsPagingSource(query) }
         )
             .flow

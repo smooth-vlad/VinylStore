@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.catalog.view.CatalogFragment">
 
-    <TextView
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/catalog_container_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Catalog" />
+        android:name="com.android.vinylstore.ui.catalog.artists.view.ArtistsFragment"/>
 
 </FrameLayout>
