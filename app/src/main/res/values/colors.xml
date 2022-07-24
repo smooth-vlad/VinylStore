@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="placeholder">#B3B3B3</color>
     <color name="offline_state">#9E9E9E</color>
+    <color name="white_1">#EBEBEB</color>
+    <color name="white_2">#DADADA</color>
 </resources>

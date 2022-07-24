@@ -11,15 +11,23 @@
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_cloud_off_24.xml" value="0.335" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_image.xml" value="0.2945" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_image_not_supported.xml" value="0.2945" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_outline_cart.xml" value="0.2555" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_outline_catalog.xml" value="0.2555" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_outline_favorite.xml" value="0.2555" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_outline_home.xml" value="0.2555" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3675" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3675" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/image_preview.xml" value="0.3675" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/drawable/tag.xml" value="0.2945" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_album.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_artist.xml" value="0.1" />
-        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_main.xml" value="0.2807153965785381" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/album_item.xml" value="0.365625" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/artist_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_cart.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_catalog.xml" value="0.19709277469003847" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_favorites.xml" value="0.19709277469003847" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_home.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_search_artists.xml" value="0.2894399315946986" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_top_artists.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/fragment_vinyl_type.xml" value="0.36666666666666664" />
@@ -31,6 +39,8 @@
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/shimmer_track_item.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/track_item.xml" value="0.75" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/layout/vinyl_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/menu/artists_activity_menu.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/vagla/Downloads/VinylStore/app/src/main/res/menu/main_activity_menu.xml" value="0.2759259259259259" />
       </map>
     </option>

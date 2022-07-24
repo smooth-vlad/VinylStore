@@ -10,4 +10,8 @@
     <string name="tracks_list_title">Песни</string>
     <string name="connection_failure">Не удалось подключиться. Проверьте Ваше соединение с интернетом</string>
     <string name="refresh_on_loading_error_message">Подождите, пока данные загрузятся</string>
+    <string name="navigation_home">Главная</string>
+    <string name="navigation_catalog">Каталог</string>
+    <string name="navigation_favourites">Избранное</string>
+    <string name="navigation_cart">Корзина</string>
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/top_artists_swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.top_artists_fragment.view.TopArtistsFragment">
+    tools:context=".ui.catalog.artists.top_artists_fragment.view.TopArtistsFragment">
 
     <FrameLayout
         android:layout_width="match_parent"

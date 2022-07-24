@@ -1,13 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.VinylStore" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white_2</item>
+        <item name="colorSecondary">@color/white_2</item>
+        <item name="colorSecondaryContainer">@color/white_2</item>
         <item name="android:windowTranslucentStatus">false</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="colorSurfaceVariant">#FFEBEBEB</item>
+        <item name="colorSurfaceVariant">@color/white_1</item>
     </style>
 
     <style name="ExpandedToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
