@@ -43,4 +43,8 @@
     </style>
     <style name="Theme.VinylStore.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.VinylStore.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="NavigationBarTextAppearance" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
