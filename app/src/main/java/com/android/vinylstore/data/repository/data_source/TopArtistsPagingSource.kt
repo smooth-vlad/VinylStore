@@ -36,7 +36,7 @@ class TopArtistsPagingSource(private val albumsApiService: AlbumsApiService) :
 
         try {
             val response = withContext(Dispatchers.Default) { call.execute() }
-            response.body().artists.let {
+            response.body()!!.artists.let {
                 Log.d(TAG, "response: prompted page: $start | got page: ${it.attr.page}")
                 Log.d(TAG, "response: real size: ${it.artist.size} | attr size: ${it.attr.perPage}")
 

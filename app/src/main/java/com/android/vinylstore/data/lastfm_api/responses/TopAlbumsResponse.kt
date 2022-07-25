@@ -3,7 +3,7 @@ package com.android.vinylstore.data.lastfm_api.responses
 import com.android.vinylstore.data.lastfm_api.classes.Album
 import com.google.gson.annotations.SerializedName
 
-class TopAlbumsResponse(@SerializedName("topalbums") var topAlbums: Albums) {
+data class TopAlbumsResponse(@SerializedName("topalbums") var topAlbums: Albums) {
     data class Albums(
         @SerializedName("album")
         var album: List<Album>,

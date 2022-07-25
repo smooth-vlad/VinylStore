@@ -34,13 +34,13 @@ class ArtistActivity : AppCompatActivity() {
 
         artistName = intent.extras?.getString(ARTIST_NAME).toString()
 
+        val appComponent = Root.getAppComponent(this)
+        val factory = appComponent.getActivityMainComponent().getFragmentArtistComponentFactory()
+            .create(artistName)
+        viewModel = ViewModelProvider(this, factory.getArtistViewModelFactory())[ArtistViewModel::class.java]
+
         binding = ActivityArtistBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel = ViewModelProvider(
-            this,
-            ArtistViewModelFactory(Root.getAppComponent(this).getAlbumsApiService(), artistName)
-        )[ArtistViewModel::class.java]
 
         viewModel.error.observe(this) {
             Log.e("ArtistActivity", it)

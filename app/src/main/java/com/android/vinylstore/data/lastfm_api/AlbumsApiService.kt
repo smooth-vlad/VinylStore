@@ -26,7 +26,7 @@ interface AlbumsApiService {
     ): Call<SearchArtistsResponse>
 
     @GET("/2.0/")
-    fun getTopAlbums(
+    suspend fun getTopAlbumsForArtist(
         @Query("api_key") apiKey: String,
         @Query("artist") artist: String,
         @Query("autocorrect") autoCorrect: Boolean? = null,
@@ -34,17 +34,17 @@ interface AlbumsApiService {
         @Query("limit") limit: Int? = null,
         @Query("format") format: String = "json",
         @Query("method") method: String = "artist.gettopalbums"
-    ): Call<TopAlbumsResponse>
+    ): TopAlbumsResponse
 
     @GET("/2.0/")
-    fun getInfoArtist(
+    suspend fun getInfoArtist(
         @Query("api_key") apiKey: String,
         @Query("artist") artist: String,
         @Query("lang") lang: String? = null,
         @Query("autocorrect") autoCorrect: Boolean? = null,
         @Query("format") format: String = "json",
         @Query("method") method: String = "artist.getinfo"
-    ): Call<ArtistInfoResponse>
+    ): ArtistInfoResponse
 
     @GET("/2.0/")
     fun getInfoAlbum(

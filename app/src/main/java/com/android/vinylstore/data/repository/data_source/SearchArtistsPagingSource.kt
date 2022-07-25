@@ -37,7 +37,7 @@ class SearchArtistsPagingSource(private val albumsApiService: AlbumsApiService, 
 
         try {
             val response = withContext(Dispatchers.Default) { call.execute() }
-            response.body().results.let {
+            response.body()!!.results.let {
                 Log.d(TAG, "response: prompted page: $start | got page: ${it.searchQuery.startPage}")
                 Log.d(TAG, "response: real size: ${it.artistsMatches.artists.size} | attr size: ${it.itemsPerPage}")
                 Log.d(TAG, "response: total results: ${it.totalResults}")
