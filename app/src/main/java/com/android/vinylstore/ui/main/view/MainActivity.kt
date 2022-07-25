@@ -19,14 +19,5 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         navController.setGraph(R.navigation.main_nav_graph)
         binding.navigationView.setupWithNavController(navController)
-
-//        binding.navigationView.setOnItemSelectedListener {  menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.home_page -> navController.navigate(R.id.action_global_homeFragment)
-//                R.id.cart_page -> navController.navigate(R.id.action_global_cartFragment)
-//                R.id.favorites_page -> navController.navigate(R.id.action_global_favoritesFragment)
-//            }
-//            true
-//        }
     }
 }

@@ -63,8 +63,6 @@ class ArtistsFragment : Fragment() {
         }
 
         setupAppBar()
-
-//        compatActivity.setSupportActionBar(binding.myToolbarMain)
     }
 
     private fun setupAppBar() {
@@ -122,31 +120,6 @@ class ArtistsFragment : Fragment() {
         }
         return this
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.artists_activity_menu, menu)
-//        search = menu.findItem(R.id.action_search)
-//        search!!.setOnActionExpandListener(SearchViewExpandListener(viewModel))
-//
-//        if (viewModel.isInSearchMode.value == true)
-//            search!!.expandActionView()
-//
-//        (search!!.actionView as androidx.appcompat.widget.SearchView).apply {
-//            isSubmitButtonEnabled = true
-//
-//            this.setOnQueryTextListener(object :
-//                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-//                override fun onQueryTextChange(newText: String?): Boolean = false
-//
-//                override fun onQueryTextSubmit(query: String?): Boolean {
-//                    Log.d(TAG, query.toString())
-//                    query?.let { onSearchSubmit(query) }
-//                    return true
-//                }
-//            })
-//        }
-//        return super.onCreateOptionsMenu(menu)
-//    }
 
     private fun onSearchSubmit(query: String) {
         val searchArtistsFragment =

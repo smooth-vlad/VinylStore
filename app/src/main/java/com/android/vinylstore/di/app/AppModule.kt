@@ -1,6 +1,9 @@
 package com.android.vinylstore.di.app
 
+import android.content.Context
+import androidx.room.Room
 import com.android.vinylstore.BuildConfig
+import com.android.vinylstore.data.db.database.VinylsStoreDatabase
 import com.android.vinylstore.data.lastfm_api.AlbumsApiService
 import com.android.vinylstore.data.repository.VinylsRepository
 import dagger.Module
@@ -23,7 +26,16 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideVinylsRepository(albumsApiService: AlbumsApiService) : VinylsRepository {
-        return VinylsRepository(albumsApiService)
+    fun provideVinylsRepository(albumsApiService: AlbumsApiService, database: VinylsStoreDatabase) : VinylsRepository {
+        return VinylsRepository(albumsApiService, database)
+    }
+
+    @Singleton
+    @Provides
+    fun provideVinylsStoreDatabase(applicationContext: Context): VinylsStoreDatabase {
+        return Room.databaseBuilder(
+            applicationContext,
+            VinylsStoreDatabase::class.java, "vinyls_store_db"
+        ).build()
     }
 }

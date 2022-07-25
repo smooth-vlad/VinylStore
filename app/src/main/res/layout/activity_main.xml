@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
+        android:layout_marginBottom="@dimen/bottom_navigation_height"
         app:navGraph="@navigation/main_nav_graph" />
 
 
@@ -19,7 +20,7 @@
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bottom_navigation_height"
         app:itemTextAppearanceInactive="@style/NavigationBarTextAppearance"
         app:itemTextAppearanceActive="@style/NavigationBarTextAppearance"
         app:backgroundTint="@color/white_1"
