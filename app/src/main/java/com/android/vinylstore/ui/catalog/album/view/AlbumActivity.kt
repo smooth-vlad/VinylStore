@@ -41,19 +41,15 @@ class AlbumActivity : AppCompatActivity() {
         val albumName = intent.extras?.getString(ALBUM_NAME).toString()
         val artistName = intent.extras?.getString(ARTIST_NAME).toString()
 
+        val appComponent = Root.getAppComponent(this)
+        val factory = appComponent.getActivityMainComponent().getFragmentAlbumComponentFactory()
+            .create(albumName, artistName)
+        viewModel = ViewModelProvider(this, factory.getAlbumViewModelFactory())[AlbumViewModel::class.java]
+
         binding = ActivityAlbumBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.albumNameTv.text = albumName
-
-        viewModel = ViewModelProvider(
-            this,
-            AlbumViewModelFactory(
-                Root.getAppComponent(this).getAlbumsApiService(),
-                albumName,
-                artistName
-            )
-        )[AlbumViewModel::class.java]
 
         viewModel.error.observe(this) {
             Log.e("AlbumActivity", it)

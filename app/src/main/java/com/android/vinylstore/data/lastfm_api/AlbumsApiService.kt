@@ -47,7 +47,7 @@ interface AlbumsApiService {
     ): ArtistInfoResponse
 
     @GET("/2.0/")
-    fun getInfoAlbum(
+    suspend fun getInfoAlbum(
         @Query("api_key") apiKey: String,
         @Query("artist") artist: String,
         @Query("album") album: String,
@@ -55,5 +55,5 @@ interface AlbumsApiService {
         @Query("autocorrect") autoCorrect: Boolean? = null,
         @Query("format") format: String = "json",
         @Query("method") method: String = "album.getinfo"
-    ): Call<AlbumInfoResponse>
+    ): AlbumInfoResponse
 }

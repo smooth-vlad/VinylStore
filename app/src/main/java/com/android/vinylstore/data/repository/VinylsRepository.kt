@@ -4,6 +4,7 @@ import com.android.vinylstore.BuildConfig
 import com.android.vinylstore.data.db.data_entity.CartItem
 import com.android.vinylstore.data.db.database.VinylsStoreDatabase
 import com.android.vinylstore.data.lastfm_api.AlbumsApiService
+import com.android.vinylstore.data.lastfm_api.responses.AlbumInfoResponse
 import com.android.vinylstore.data.lastfm_api.responses.ArtistInfoResponse
 import com.android.vinylstore.data.lastfm_api.responses.TopAlbumsResponse
 import com.android.vinylstore.data.repository.data_source.SearchArtistsPagingSource
@@ -33,5 +34,12 @@ class VinylsRepository constructor(
         albumsApiService.getInfoArtist(
             apiKey = BuildConfig.LASTFM_API_KEY,
             artist = artistName
+        )
+
+    suspend fun getAlbumInfo(albumName: String, artistName: String): AlbumInfoResponse =
+        albumsApiService.getInfoAlbum(
+            apiKey = BuildConfig.LASTFM_API_KEY,
+            artist = artistName,
+            album = albumName
         )
 }

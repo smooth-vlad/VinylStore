@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
-    fun getAlbumsApiService(): AlbumsApiService
     fun getVinylsRepository(): VinylsRepository
     fun getActivityMainComponent(): ActivityMainComponent
 
